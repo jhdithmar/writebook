@@ -45,5 +45,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_02_14_010715) do
   end
 
   add_foreign_key "leafs", "books"
-  add_foreign_key "leafs", "parents"
 end
