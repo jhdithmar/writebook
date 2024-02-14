@@ -6,7 +6,7 @@ environment rails_env
 
 case rails_env
 when "production"
-  workers_count = ENV.fetch("WEB_CONCURRENCY") { (Concurrent.processor_count * 0.666).ceil }
+  workers_count = Integer(ENV.fetch("WEB_CONCURRENCY") { (Concurrent.processor_count * 0.666).ceil })
   workers workers_count if workers_count > 1
 
   preload_app!
