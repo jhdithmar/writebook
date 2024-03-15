@@ -12,7 +12,7 @@ module SetBookLeaf
     end
 
     def set_leaf
-      @leaf = @book.leafs.public_send(controller_leafable_name.pluralize).find params[:id]
+      @leaf = @book.leaves.public_send(controller_leafable_name.pluralize).find params[:id]
     end
 
     def set_leafable

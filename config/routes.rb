@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "books#index"
 
   resources :books do
-    resources :leafs
+    resources :leaves
     resources :pages
   end
 

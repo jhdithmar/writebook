@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @leafs = @book.leafs.with_leafables
+    @leaves = @book.leaves.with_leafables
   end
 
   private

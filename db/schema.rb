@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_03_15_104834) do
+ActiveRecord::Schema[7.2].define(version: 2024_03_15_111937) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "leafs", force: :cascade do |t|
+  create_table "leaves", force: :cascade do |t|
     t.integer "book_id", null: false
     t.string "leafable_type", null: false
     t.integer "leafable_id", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_03_15_104834) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_leafs_on_book_id"
+    t.index ["book_id"], name: "index_leaves_on_book_id"
     t.index ["leafable_type", "leafable_id"], name: "index_leafs_on_leafable"
   end
 
@@ -42,5 +42,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_03_15_104834) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "leafs", "books"
+  add_foreign_key "leaves", "books"
 end
