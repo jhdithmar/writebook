@@ -1,0 +1,5 @@
+<h1><%= @picture.title %></h1>
+
+<p><%= image_tag @picture.image.variant(:large) %></p>
+
+<p><%= link_to "Edit", edit_leafable_path(@leaf) %></p>

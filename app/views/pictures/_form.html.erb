@@ -1,0 +1,5 @@
+<%= form_with model: [ book, picture ] do |form| %>
+  <%= form.text_field :title %><br>
+  <%= form.file_field :image %>
+  <%= form.submit "Save" %>
+<% end %>

@@ -12,3 +12,8 @@ summary_page:
   book: handbook
   leafable: summary (Page)
   position_score: 3
+
+reading_picture:
+  book: handbook
+  leafable: reading (Picture)
+  position_score: 4

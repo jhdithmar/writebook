@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :leaves
     resources :pages
     resources :sections
+    resources :pictures
   end
 
   direct :leafable do |leaf, options|
