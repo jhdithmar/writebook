@@ -7,6 +7,10 @@
 </ul>
 
 
-<%= link_to "New page", new_book_page_path(@book) %><br>
+<p>New:
+  <%= link_to "Page", new_book_page_path(@book) %>
+  <%= link_to "Section", new_book_section_path(@book) %>
+  <%= link_to "Picture", new_book_picture_path(@book) %>
+</p>
 
 <%= link_to "Back", books_path %>
