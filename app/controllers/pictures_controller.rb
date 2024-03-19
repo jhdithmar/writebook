@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   include SetBookLeaf
 
   def new
-    @page = picture.new
+    @picture = Picture.new
   end
 
   def create
@@ -17,7 +17,7 @@ class PicturesController < ApplicationController
   end
 
   def update
-    @leaf.update! leafable: new_picture
+    @picture.update! picture_params
     redirect_to @book
   end
 
@@ -25,7 +25,11 @@ class PicturesController < ApplicationController
   end
 
   private
-    def new_picture
-      Picture.new params.require(:picture).permit(:title, :image).compact
+    def picture_params
+      Picture.new picture_params
+    end
+
+    def picture_params
+      params.require(:picture).permit(:title, :image)
     end
 end

@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def update
-    @leaf.update! leafable: new_page
+    @page.update! page_params
     redirect_to @book
   end
 
@@ -26,6 +26,10 @@ class PagesController < ApplicationController
 
   private
     def new_page
-      Page.new params.require(:page).permit(:title, :body)
+      Page.new page_params
+    end
+
+    def page_params
+      params.require(:page).permit(:title, :body)
     end
 end

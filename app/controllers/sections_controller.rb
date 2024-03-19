@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   include SetBookLeaf
 
   def new
-    @page = Section.new
+    @section = Section.new
   end
 
   def create
@@ -17,7 +17,7 @@ class SectionsController < ApplicationController
   end
 
   def update
-    @leaf.update! leafable: new_section
+    @section.update! section_params
     redirect_to @book
   end
 
@@ -26,6 +26,10 @@ class SectionsController < ApplicationController
 
   private
     def new_section
-      Section.new params.require(:section).permit(:title)
+      Section.new section_params
+    end
+
+    def section_params
+      params.require(:section).permit(:title)
     end
 end
