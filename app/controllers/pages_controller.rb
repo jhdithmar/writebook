@@ -1,9 +1,6 @@
 class PagesController < ApplicationController
   include SetBookLeaf
 
-  def index
-  end
-
   def new
     @page = Page.new
   end

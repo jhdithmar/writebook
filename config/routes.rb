@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :leaves
     resources :pages
+    resources :sections
   end
 
   direct :leafable do |leaf, options|
