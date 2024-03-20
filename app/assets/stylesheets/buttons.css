@@ -29,7 +29,7 @@
       max-inline-size: unset;
     }
 
-    img:not([class]) {
+    img {
       filter: invert(0);
 
       @media (prefers-color-scheme: dark) {
@@ -60,8 +60,24 @@
   --btn-border-size: 0;
   --btn-padding: 0;
 }
+
+.btn--negative {
+  --btn-background: var(--color-negative);
+  --btn-color: var(--color-text-reversed);
+}
+
 .btn--reversed {
   --btn-background: var(--color-text);
   --btn-border-color: var(--color-bg);
   --btn-color: var(--color-bg);
+}
+
+:is(.btn--negative, .btn--reversed) {
+  img {
+    filter: invert(100%);
+
+    @media (prefers-color-scheme: dark) {
+      filter: invert(0);
+    }
+  }
 }

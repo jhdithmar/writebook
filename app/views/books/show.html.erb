@@ -5,9 +5,9 @@
   <% end %>
 
   <div class="flex gap breadcrumbs" style="--column-gap: 0.5ch;">
-    <a href="index.html">
+    <%= link_to books_path do %>
       <%= image_tag "books.svg", aria: { label: "Books" }, size: 19, class: "colorize--black", alt: "Books" %>
-    </a> ▸
+    <% end %> ▸
     <strong><%= @book.title %></strong>
   </div>
 
@@ -50,7 +50,9 @@
         <% @leaves.each do |leaf| %>
           <li>
             <%= link_to leaf.title, leafable_path(leaf) %>
-            <small class="wordcount translucent">200 words</small>
+            <small class="wordcount translucent">
+              <%= word_count(leaf.leafable.body) %>
+            </small>
           </li>
         <% end %>
       </ol>

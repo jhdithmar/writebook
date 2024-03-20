@@ -1,5 +1,5 @@
-<%= form_with model: [ book, page ] do |form| %>
-  <%= form.text_field :title, required: true, autofocus: true %><br>
-  <%= form.text_area :body %><br>
-  <%= form.submit "Save" %>
+<%= form_with model: [ book, page ], id: "page-editor" do |form| %>
+  <%= form.text_field :title, required: true, autofocus: true, class: "input full-width" %><br>
+  <%= form.text_area :body, class: "input editor margin-block-half" %><br>
+  <%= form.submit "Save", hidden: true %>
 <% end %>
