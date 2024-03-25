@@ -12,9 +12,7 @@
   </nav>
 <% end %>
 
-<main>
-  <%= form_with model: @book, id: "book-editor" do |form| %>
-    <%= form.text_field :title, required: true, autofocus: true, class: "input full-width" %>
-    <%= form.submit "Create", hidden: true %>
-  <% end %>
-</main>
+<%= form_with model: @book, id: "book-editor" do |form| %>
+  <%= form.text_field :title, required: true, autofocus: true, class: "input full-width" %>
+  <%= form.submit "Create", hidden: true %>
+<% end %>
