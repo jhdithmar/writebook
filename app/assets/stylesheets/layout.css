@@ -1,3 +1,12 @@
+#main {
+  --footer-height: calc((var(--block-space) * 2) + var(--btn-size));
+
+  container-type: inline-size;
+  margin: var(--block-space) 0 var(--footer-height) auto;
+  padding-inline: clamp(2ch, 6%, 6ch);
+  text-align: start;
+}
+
 #header {
   border-block-end: 1px solid var(--color-border-dark);
   inset: 0 0 auto 0;
@@ -13,7 +22,7 @@
 :where(#header, #footer) {
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  background-color: oklch(var(--lch-white) / 0.8);
+  background-color: oklch(var(--lch-white) / 0.5);
   z-index: 1;
 
   > * {
@@ -23,12 +32,4 @@
     justify-content: center;
     padding: var(--block-space-half) var(--inline-space);
   }
-}
-
-#main {
-  container-type: inline-size;
-  margin: auto auto calc(var(--block-space) + var(--btn-size)) auto;
-  padding-block: clamp(1lh, 6%, 3lh);
-  padding-inline: clamp(2ch, 6%, 6ch);
-  text-align: start;
 }
