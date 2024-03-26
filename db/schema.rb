@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_03_19_154226) do
+ActiveRecord::Schema[7.2].define(version: 2024_03_26_101046) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,6 +43,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_03_19_154226) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "edits", force: :cascade do |t|
+    t.integer "leaf_id", null: false
+    t.string "leafable_type", null: false
+    t.integer "leafable_id", null: false
+    t.string "action", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["leaf_id"], name: "index_edits_on_leaf_id"
+    t.index ["leafable_type", "leafable_id"], name: "index_edits_on_leafable"
   end
 
   create_table "leaves", force: :cascade do |t|
@@ -78,5 +89,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_03_19_154226) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "edits", "leaves"
   add_foreign_key "leaves", "books"
 end
