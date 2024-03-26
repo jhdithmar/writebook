@@ -17,7 +17,7 @@ class PicturesController < ApplicationController
   end
 
   def update
-    @picture.update! picture_params
+    @leaf.edit picture_params
     redirect_to @book
   end
 

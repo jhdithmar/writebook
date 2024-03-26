@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def update
-    @page.update! page_params
+    @leaf.edit page_params
     redirect_to @book
   end
 

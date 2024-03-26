@@ -17,7 +17,7 @@ class SectionsController < ApplicationController
   end
 
   def update
-    @section.update! section_params
+    @leaf.edit section_params
     redirect_to @book
   end
 

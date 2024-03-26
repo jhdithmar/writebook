@@ -1,5 +1,5 @@
 class Leaf < ApplicationRecord
-  include Positionable
+  include Editable, Positionable
 
   belongs_to :book
 
