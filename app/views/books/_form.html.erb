@@ -2,5 +2,6 @@
   <%= form.file_field :cover, class: "input input--file" %>
   <%= form.text_field :title, required: true, autofocus: true, class: "input full-width", placeholder: "Title" %>
   <%= form.text_field :subtitle, class: "input full-width", placeholder: "Subtitle" %>
+  <%= form.text_field :author, class: "input full-width", placeholder: "Author" %>
   <%= form.submit "Save", hidden: true %>
 <% end %>
