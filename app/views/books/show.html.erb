@@ -31,7 +31,7 @@
   <%= image_tag @book.cover.attached? ? @book.cover : "default-cover.svg", alt: "Book cover", class: "book__cover margin-none" %>
 
   <div class="flex-inline align-center gap center margin-block-start pad-inline pad-block-half fill-shade border-radius">
-    <%= image_tag "lock.svg", aria: { hidden: true }, size: 36 %>
+    <%= image_tag "lock.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
 
     <label for="publication" class="switch txt-medium">
       <input type="checkbox" id="publication" class="switch__input" checked="checked">
@@ -39,7 +39,7 @@
       <span class="for-screen-reader">Publish this book</span>
     </label>
 
-    <%= image_tag "world.svg", aria: { hidden: true }, size: 36 %>
+    <%= image_tag "world.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
   </div>
 </aside>
 
