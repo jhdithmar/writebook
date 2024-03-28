@@ -125,9 +125,9 @@
     </label>
   </div>
 
-  <ol class="toc">
+  <ol class="toc" tabindex="0" data-controller="list-arrangement" data-action="<%= list_arrangement_actions %>">
     <% @leaves.each do |leaf| %>
-      <li class="toc__leaf toc__leaf--<%= leaf.leafable_name%>" draggable="true">
+      <li class="toc__leaf toc__leaf--<%= leaf.leafable_name%>" draggable="true" data-list-arrangement-target="item">
         <%= image_tag "handle.svg", aria: { hidden: true }, size: 24, class: "toc__handle" %>
 
         <%= link_to leafable_path(leaf), class: "toc__thumbnail" do %>
