@@ -15,10 +15,48 @@
       <strong><%= @book.title %></strong>
     </div>
 
-    <button class="btn txt-medium flex-item-justify-end">
-      <%= image_tag "download.svg", aria: { hidden: true }, size: 24 %>
-      <span class="for-screen-reader">Download</span>
-    </button>
+    <div data-controller="popup" class="flex-item-justify-end">
+      <button class="btn txt-medium", data-action="popup#toggle">
+        <%= image_tag "download.svg", aria: { hidden: true }, size: 24 %>
+        <span class="for-screen-reader">Download</span>
+      </button>
+
+      <dialog class="dialog" data-popup-target="popup" data-action="click->popup#close">
+        <div class="flex align-center justify-center gap" style="--column-gap: 4ch">
+          <div class="flex flex-column justify-center">
+            <button class="btn btn--plain txt-x-large center", data-action="popup#toggle">
+              <%= image_tag "file-pdf.svg", aria: { hidden: true }, size: 24 %>
+              <span class="for-screen-reader">Download</span>
+            </button>
+            <span><%= "#{ @book.title.parameterize }.pdf" %></span>
+          </div>
+
+          <div class="flex flex-column justify-center">
+            <button class="btn btn--plain txt-x-large center", data-action="popup#toggle">
+              <%= image_tag "file-mobi.svg", aria: { hidden: true }, size: 24 %>
+              <span class="for-screen-reader">Download</span>
+            </button>
+            <span><%= "#{ @book.title.parameterize }.mobi" %></span>
+          </div>
+
+          <div class="flex flex-column justify-center">
+            <button class="btn btn--plain txt-x-large center", data-action="popup#toggle">
+              <%= image_tag "file-html.svg", aria: { hidden: true }, size: 24 %>
+              <span class="for-screen-reader">Download</span>
+            </button>
+            <span><%= "#{ @book.title.parameterize }.html" %></span>
+          </div>
+
+          <div class="flex flex-column justify-center">
+            <button class="btn btn--plain txt-x-large center", data-action="popup#toggle">
+              <%= image_tag "file-epub.svg", aria: { hidden: true }, size: 24 %>
+              <span class="for-screen-reader">Download</span>
+            </button>
+            <span><%= "#{ @book.title.parameterize }.epub" %></span>
+          </div>
+        </div>
+      </dialog>
+    </div>
 
     <button class="btn txt-medium">
       <%= image_tag "share.svg", aria: { hidden: true }, size: 24 %>
