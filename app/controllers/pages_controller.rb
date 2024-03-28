@@ -18,7 +18,7 @@ class PagesController < ApplicationController
 
   def update
     @leaf.edit page_params
-    redirect_to @book
+    redirect_to leafable_url(@leaf)
   end
 
   def destroy
