@@ -2,7 +2,7 @@
   display: grid;
   font-size: clamp(1rem, 2.5cqi, 1.5rem);
   inline-size: auto;
-  gap: 1lh 2ch;
+  gap: var(--block-space) var(--inline-space);
   grid-template-columns: repeat(auto-fit, minmax(max(130px, 12cqi), 1fr));
   list-style: none;
   padding: 0;
