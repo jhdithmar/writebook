@@ -5,7 +5,7 @@ export default class extends Controller {
 
   #cursorPosition = 0
   #selection = [ 0, 0 ]
-  #moving = false
+  #moveStartOrder = undefined
 
   connect() {
   }
@@ -22,24 +22,48 @@ export default class extends Controller {
   }
 
   moveCursorUp(event) {
-    this.#moveCursorEarlier(event.shiftKey)
+    if (this.#moving) {
+      this.#moveSelectionEarlier()
+    } else {
+      this.#moveCursorEarlier(event.shiftKey)
+    }
   }
 
   moveCursorRight(event) {
-    this.#moveCursorLater(event.shiftKey)
+    if (this.#moving) {
+      this.#moveSelectionLater()
+    } else {
+      this.#moveCursorLater(event.shiftKey)
+    }
   }
 
   moveCursorDown(event) {
-    this.#moveCursorLater(event.shiftKey)
+    if (this.#moving) {
+      this.#moveSelectionLater()
+    } else {
+      this.#moveCursorLater(event.shiftKey)
+    }
   }
 
   moveCursorLeft(event) {
-    this.#moveCursorEarlier(event.shiftKey)
+    if (this.#moving) {
+      this.#moveSelectionEarlier()
+    } else {
+      this.#moveCursorEarlier(event.shiftKey)
+    }
   }
 
   toggleMoveMode() {
-    this.element.classList.toggle("move-mode")
+    this.#moveStartOrder = this.#moving ? undefined : [ ...this.itemTargets ]
+    this.element.classList.toggle("move-mode", this.#moving)
+  }
 
+  cancelMoveMode() {
+    if (this.#moving) {
+      this.#restorePreviousOrder()
+      this.#moveStartOrder = undefined
+      this.element.classList.toggle("move-mode", false)
+    }
   }
 
   #moveCursorEarlier(keepSelection) {
@@ -63,6 +87,34 @@ export default class extends Controller {
     this.#setSelectionState()
   }
 
+  #moveSelectionEarlier() {
+    if (this.#selection[0] > 0) {
+      const itemToMove = this.itemTargets[this.#selection[0] - 1]
+      this.itemTargets[this.#selection[1]].after(itemToMove)
+
+      this.#selection = [ this.#selection[0] - 1, this.#selection[1] - 1 ]
+      this.#cursorPosition--
+      this.#setSelectionState()
+    }
+  }
+
+  #moveSelectionLater() {
+    if (this.#selection[1] < this.itemTargets.length - 1) {
+      const itemToMove = this.itemTargets[this.#selection[1] + 1]
+      this.itemTargets[this.#selection[0]].before(itemToMove)
+
+      this.#selection = [ this.#selection[0] + 1, this.#selection[1] + 1 ]
+      this.#cursorPosition++
+      this.#setSelectionState()
+    }
+  }
+
+  #restorePreviousOrder() {
+    for (const el of this.#moveStartOrder) {
+    }
+    console.log("Order was", this.#moveStartOrder)
+  }
+
   #setSelectionState() {
     for (const [index, item] of this.itemTargets.entries()) {
       item.classList.toggle("cursor", index === this.#cursorPosition)
@@ -74,9 +126,14 @@ export default class extends Controller {
     for (const item of this.itemTargets) {
       item.classList.remove("cursor", "selected")
     }
+    this.element.classList.remove("move-mode")
   }
 
   #isSelected(index) {
     return index >= this.#selection[0] && index <= this.#selection[1]
+  }
+
+  get #moving() {
+    return this.#moveStartOrder !== undefined
   }
 }

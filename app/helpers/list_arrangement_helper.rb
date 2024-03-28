@@ -12,8 +12,9 @@ module ListArrangementHelper
       "keydown.shift+down": "moveCursorDown",
       "keydown.shift+left": "moveCursorLeft",
       "keydown.space": "toggleMoveMode",
+      "keydown.esc": "cancelMoveMode",
     }
 
-    actions.map { |action, target| "#{action}->list-arrangement##{target}" }.join(" ")
+    actions.map { |action, target| "#{action}->list-arrangement##{target}:prevent" }.join(" ")
   end
 end
