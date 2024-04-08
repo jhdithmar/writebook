@@ -1,4 +1,4 @@
-module Leaf::Statuses
+module Leaf::Status
   extend ActiveSupport::Concern
 
   included do
