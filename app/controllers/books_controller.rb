@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @leaves = @book.leaves.excluding_trashed.with_leafables.positioned
+    @leaves = @book.leaves.with_leafables.positioned
   end
 
   def edit
