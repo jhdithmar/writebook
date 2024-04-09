@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { post } from "@rails/request.js"
 
 export default class extends Controller {
-  static targets = ["item"]
+  static targets = [ "item", "handle" ]
   static values = { url: String }
 
   #cursorPosition
@@ -19,6 +19,14 @@ export default class extends Controller {
 
   blur() {
     this.#clearSelectionState()
+  }
+
+  click(event) {
+    const idx = this.#findHandleIndex(event.target)
+    if (idx >= 0) {
+      event.preventDefault()
+      this.#moveCursorTo(idx, event.shiftKey)
+    }
   }
 
   moveCursorUp(event) {
@@ -160,6 +168,14 @@ export default class extends Controller {
     this.#cursorPosition = 0
     this.#selection = [0, 0]
     this.#moveStartOrder = undefined
+  }
+
+  #findHandleIndex(target) {
+    for (const [i, handle] of this.handleTargets.entries()) {
+      if (handle.contains(target)) {
+        return i
+      }
+    }
   }
 
   get #moving() {

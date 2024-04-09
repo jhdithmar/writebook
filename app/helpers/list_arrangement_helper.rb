@@ -3,18 +3,19 @@ module ListArrangementHelper
     actions = {
       "focus": "focus",
       "blur": "blur",
-      "keydown.up": "moveCursorUp",
-      "keydown.right": "moveCursorRight",
-      "keydown.down": "moveCursorDown",
-      "keydown.left": "moveCursorLeft",
-      "keydown.shift+up": "moveCursorUp",
-      "keydown.shift+right": "moveCursorRight",
-      "keydown.shift+down": "moveCursorDown",
-      "keydown.shift+left": "moveCursorLeft",
-      "keydown.space": "toggleMoveMode",
-      "keydown.esc": "cancelMoveMode",
+      "click": "click",
+      "keydown.up": "moveCursorUp:prevent",
+      "keydown.right": "moveCursorRight:prevent",
+      "keydown.down": "moveCursorDown:prevent",
+      "keydown.left": "moveCursorLeft:prevent",
+      "keydown.shift+up": "moveCursorUp:prevent",
+      "keydown.shift+right": "moveCursorRight:prevent",
+      "keydown.shift+down": "moveCursorDown:prevent",
+      "keydown.shift+left": "moveCursorLeft:prevent",
+      "keydown.space": "toggleMoveMode:prevent",
+      "keydown.esc": "cancelMoveMode:prevent",
     }
 
-    actions.map { |action, target| "#{action}->list-arrangement##{target}:prevent" }.join(" ")
+    actions.map { |action, target| "#{action}->list-arrangement##{target}" }.join(" ")
   end
 end
