@@ -1,13 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 import { post } from "@rails/request.js"
 
+const Direction = {
+  EARLIER: -1,
+  LATER: 1,
+}
+
 export default class extends Controller {
-  static targets = [ "item", "handle" ]
+  static targets = ["item", "handle"]
   static values = { url: String }
 
   #cursorPosition
   #selection
   #moveStartOrder
+
+  // Actions
 
   connect() {
     this.#reset()
@@ -29,36 +36,20 @@ export default class extends Controller {
     }
   }
 
-  moveCursorUp(event) {
-    if (this.#moving) {
-      this.#moveSelectionEarlier()
-    } else {
-      this.#moveCursorEarlier(event.shiftKey)
-    }
+  moveUp(event) {
+    this.#move(Direction.EARLIER, event.shiftKey)
   }
 
-  moveCursorRight(event) {
-    if (this.#moving) {
-      this.#moveSelectionLater()
-    } else {
-      this.#moveCursorLater(event.shiftKey)
-    }
+  moveRight(event) {
+    this.#move(Direction.LATER, event.shiftKey)
   }
 
-  moveCursorDown(event) {
-    if (this.#moving) {
-      this.#moveSelectionLater()
-    } else {
-      this.#moveCursorLater(event.shiftKey)
-    }
+  moveDown(event) {
+    this.#move(Direction.LATER, event.shiftKey)
   }
 
-  moveCursorLeft(event) {
-    if (this.#moving) {
-      this.#moveSelectionEarlier()
-    } else {
-      this.#moveCursorEarlier(event.shiftKey)
-    }
+  moveLeft(event) {
+    this.#move(Direction.EARLIER, event.shiftKey)
   }
 
   toggleMoveMode() {
@@ -78,31 +69,42 @@ export default class extends Controller {
     }
   }
 
-  #moveCursorEarlier(keepSelection) {
-    const index = Math.max(0, this.#cursorPosition - 1)
-    this.#moveCursorTo(index, keepSelection)
+  // Private
+
+  #move(direction, keepSelection) {
+    if (this.#moving) {
+      this.#moveSelection(direction)
+    } else {
+      this.#moveCursor(direction, keepSelection)
+    }
   }
 
-  #moveCursorLater(keepSelection) {
-    const index = Math.min(
-      this.itemTargets.length - 1,
-      this.#cursorPosition + 1
-    )
+  #moveCursor(direction, keepSelection) {
+    const index = direction === Direction.EARLIER
+        ? Math.max(0, this.#cursorPosition - 1)
+        : Math.min(this.itemTargets.length - 1, this.#cursorPosition + 1)
+
     this.#moveCursorTo(index, keepSelection)
   }
 
   #moveCursorTo(index, keepSelection) {
     this.#cursorPosition = index
+
     if (keepSelection) {
-      this.#selection = [
-        Math.min(this.#selection[0], index),
-        Math.max(this.#selection[1], index),
-      ]
+      this.#selection = [ Math.min(this.#selection[0], index), Math.max(this.#selection[1], index) ]
     } else {
-      this.#selection = [index, index]
+      this.#selection = [ index, index ]
     }
 
     this.#setSelectionState()
+  }
+
+  #moveSelection(direction) {
+    if (direction === Direction.EARLIER) {
+      this.#moveSelectionEarlier()
+    } else {
+      this.#moveSelectionLater()
+    }
   }
 
   #moveSelectionEarlier() {
@@ -159,7 +161,7 @@ export default class extends Controller {
 
     const body = new FormData()
     body.append("position", position)
-    ids.forEach(id => body.append("id[]", id))
+    ids.forEach((id) => body.append("id[]", id))
 
     post(this.urlValue, { body })
   }
