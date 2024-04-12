@@ -5,7 +5,6 @@
   border-radius: var(--input-border-radius, 0.5em);
   border: var(--input-border-size, 1px) solid var(--input-border-color, var(--color-border-darker));
   color: var(--input-color, var(--color-ink));
-  field-sizing: content;
   font-size: max(16px, 1em);
   inline-size: 100%;
   max-inline-size: 100%;

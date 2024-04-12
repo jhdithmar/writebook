@@ -91,6 +91,11 @@
       text-decoration: underline;
     }
 
+    :is(.input) {
+      field-sizing: content;
+      min-inline-size: 20ch;
+    }
+
     &::after {
       border-block-end: 1px dotted var(--color-border-darker);
       content: "";
