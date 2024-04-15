@@ -75,7 +75,7 @@ export default class extends Controller {
     event.preventDefault()
 
     if (this.#moveMode) {
-      this.applyMoveMode()
+      this.applyMoveMode(event)
     } else {
       this.#moveMode = true
       this.#originalOrder = [ ...this.itemTargets ]
