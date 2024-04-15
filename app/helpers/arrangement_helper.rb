@@ -27,7 +27,7 @@ module ArrangementHelper
       "keydown.shift+left": "moveBefore",
       "keydown.space": "toggleMoveMode",
       "keydown.enter": "applyMoveMode",
-      "keydown.esc": "cancelMoveMode",
+      "keydown.esc": "cancelMoveMode"
     }
 
     actions.map { |action, target| "#{action}->arrangement##{target}" }.join(" ")
