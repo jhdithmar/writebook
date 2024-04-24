@@ -20,27 +20,21 @@
 <aside class="txt-align-center">
   <%= image_tag @book.cover.attached? ? @book.cover : "default-cover.webp", alt: "Book cover", class: "book__cover margin-none" %>
 
-  <div class="flex flex-wrap gap margin-block justify-center">
-    <button class="btn">
-      <%= image_tag "file-pdf.svg", aria: { hidden: true }, size: 24 %>
-      <span class="for-screen-reader">Download PDF file</span>
-    </button>
+  <fieldset class="flex flex-column gap margin-block pad border-radius border">
+    <legend class="center">
+      <%= image_tag "download.svg", aria: { hidden: true }, size: 36, class: "colorize--black translucent" %>
+      <span class="for-screen-reader">Downloads</span>
+    </legend>
 
-    <button class="btn">
-      <%= image_tag "file-mobi.svg", aria: { hidden: true }, size: 24 %>
-      <span class="for-screen-reader">Download MOBI file</span>
-    </button>
-
-    <button class="btn">
-      <%= image_tag "file-html.svg", aria: { hidden: true }, size: 24 %>
-      <span class="for-screen-reader">Download HTML file</span>
-    </button>
-
-    <button class="btn">
-      <%= image_tag "file-epub.svg", aria: { hidden: true }, size: 24 %>
-      <span class="for-screen-reader">Download EPUB file</span>
-    </button>
-  </div>
+    <% ["pdf", "mobi", "html", "epub"].each do |format| %>
+      <%= link_to nil, class: "txt-ink" do %>
+        <div class="flex align-center gap txt-medium">
+          <%= image_tag "file-#{format}.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
+          <u><%= "#{ @book.title.parameterize }.#{format}" %></u>
+        </div>
+      <% end %>
+    <% end %>
+  </fieldset>
 
   <div hidden class="flex-inline align-center gap center margin-block-start pad-inline pad-block-half fill-shade border-radius">
     <%= image_tag "lock.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
