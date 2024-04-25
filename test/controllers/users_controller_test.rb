@@ -33,6 +33,24 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal user.id, Session.find_by(token: parsed_cookies.signed[:session_token]).user.id
   end
 
+  test "destroy" do
+    sign_in :david
+
+    assert_difference -> { User.active.count }, -1 do
+      delete user_url(users(:kevin))
+    end
+
+    assert_redirected_to users_url
+    assert_nil User.active.find_by(id: users(:kevin).id)
+  end
+
+  test "non-admins cannot perform actions" do
+    sign_in :kevin
+
+    delete user_url(users(:david))
+    assert_response :forbidden
+  end
+
   test "creating a new user with an existing email address will redirect to login screen" do
     assert_no_difference -> { User.count } do
       post join_url(@join_code), params: { user: { name: "Another David", email_address: users(:david).email_address, password: "secret123456" } }

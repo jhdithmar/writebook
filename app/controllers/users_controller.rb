@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   require_unauthenticated_access only: %i[ new create ]
 
   before_action :verify_join_code, only: %i[ new create ]
+  before_action :ensure_can_administer, :set_user, only: %i[ update destroy ]
+
 
   def index
-    @users = User.all
+    @users = User.active
   end
 
   def new
@@ -19,12 +21,24 @@ class UsersController < ApplicationController
     redirect_to new_session_url(email_address: user_params[:email_address])
   end
 
+  def update
+  end
+
+  def destroy
+    @user.deactivate
+    redirect_to users_url
+  end
+
   private
-    def verify_join_code
-      head :not_found if Current.account.join_code != params[:join_code]
+    def set_user
+      @user = User.active.find(params[:id])
     end
 
     def user_params
       params.require(:user).permit(:name, :email_address, :password)
+    end
+
+    def verify_join_code
+      head :not_found if Current.account.join_code != params[:join_code]
     end
 end
