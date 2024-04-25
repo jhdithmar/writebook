@@ -9,3 +9,4 @@ pin "house", to: "house.min.js"
 
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin_all_from "app/javascript/helpers", under: "helpers"
+pin_all_from "app/javascript/lib", under: "lib"

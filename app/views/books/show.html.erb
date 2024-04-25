@@ -82,7 +82,7 @@
     <small class="txt-medium-container txt-normal translucent txt-tight-lines"><%= @book.author %></small>
   </h1>
 
-  <div class="flex gap-half">
+  <div class="flex gap-half" data-controller="toc-view" data-toc-view-id-value="<%= dom_id(@book) %>">
     <label class="btn txt-medium flex-item-justify-start">
       <input type="checkbox" name="arrange-mode" id="arrange-mode" data-action="arrangement#setArrangeMode">
       <%= image_tag "rearrange.svg", aria: { hidden: true }, size: 24 %>
@@ -90,13 +90,13 @@
     </label>
 
     <label class="btn txt-medium flex-item-justify-end">
-      <input type="radio" name="view" id="toc-list" value="list" checked="checked">
+      <input type="radio" name="view" id="toc-list" value="list" checked="checked" data-toc-view-target="switch" data-toc-view-type-value="list" data-action="toc-view#saveViewPref">
       <%= image_tag "view-list.svg", aria: { hidden: true }, size: 24 %>
       <span class="for-screen-reader">List view</span>
     </label>
 
     <label class="btn txt-medium">
-      <input type="radio" name="view" id="toc-grid" value="grid">
+      <input type="radio" name="view" id="toc-grid" value="grid" data-toc-view-target="switch" data-toc-view-type-value="grid" data-action="toc-view#saveViewPref">
       <%= image_tag "view-grid.svg", aria: { hidden: true }, size: 24 %>
       <span class="for-screen-reader">Page view</span>
     </label>
