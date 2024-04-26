@@ -25,7 +25,7 @@
 <aside class="txt-align-center">
   <%= image_tag @book.cover.attached? ? @book.cover : "default-cover.webp", alt: "Book cover", class: "book__cover margin-none" %>
 
-  <fieldset class="flex flex-column gap margin-block pad border-radius border">
+  <fieldset class="flex flex-column gap margin-block pad border-radius border no-print">
     <legend class="center">
       <%= image_tag "download.svg", aria: { hidden: true }, size: 36, class: "colorize--black translucent" %>
       <span class="for-screen-reader">Downloads</span>
@@ -117,7 +117,7 @@
     <div data-arrangement-target="layer" class="toc"></div>
     <div data-arrangement-target="dragImage" class="arrangement-drag-image"></div>
 
-    <div class="page__picker flex-inline center align-center justify-center gap border-radius pad-block pad-inline-double">
+    <div class="page__picker flex-inline center align-center justify-center gap border-radius pad-block pad-inline-double no-print">
       <div class="flex flex-column justify-center">
         <%= form_with model: [ @book, Page.new ] do |form| %>
           <%= form.hidden_field :title %>

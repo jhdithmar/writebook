@@ -185,3 +185,14 @@
 /* Visibility */
 [hidden] { display: none; }
 [contents] { display: contents; }
+
+/* Printing */
+@page {
+  margin: 1in;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+}

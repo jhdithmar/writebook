@@ -86,6 +86,10 @@
     opacity: 0.5;
     pointer-events: none;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 /* Variants */
