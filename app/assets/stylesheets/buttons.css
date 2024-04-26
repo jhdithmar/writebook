@@ -23,9 +23,9 @@
     img {
       -webkit-touch-callout: none;
       aspect-ratio: 1;
-      block-size: calc(var(--btn-size) / 2);
+      block-size: calc(var(--btn-size) / 1.9);
       filter: invert(0);
-      inline-size: calc(var(--btn-size) / 2);
+      inline-size: calc(var(--btn-size) / 1.9);
       max-inline-size: unset;
       user-select: none;
 
@@ -96,7 +96,12 @@
 .btn--plain {
   --btn-border-size: 0;
   --btn-padding: 0;
-  --btn-size: 3.65em;
+  --hover-size: 0;
+
+  img{
+    block-size: 100%;
+    inline-size: 100%;
+  }
 }
 
 .btn--negative {

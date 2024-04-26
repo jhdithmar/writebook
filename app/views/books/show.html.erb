@@ -87,12 +87,21 @@
     <small class="txt-medium-container txt-normal translucent txt-tight-lines"><%= @book.author %></small>
   </h1>
 
-  <div class="flex gap-half" data-controller="toc-view" data-toc-view-id-value="<%= dom_id(@book) %>">
-    <label class="btn txt-medium flex-item-justify-start">
-      <input type="checkbox" name="arrange-mode" id="arrange-mode" data-action="arrangement#setArrangeMode">
-      <%= image_tag "rearrange.svg", aria: { hidden: true }, size: 24 %>
-      <span class="for-screen-reader">Rearrange</span>
-    </label>
+  <div class="book__toolbar flex gap-half fill-white" data-controller="toc-view" data-toc-view-id-value="<%= dom_id(@book) %>">
+    <%= button_to [ @book, Page.new ], params: { page: { title: "Untitled"} }, class: "btn btn--plain txt-medium" do %>
+      <%= image_tag "page-text-add.svg", aria: { hidden: true }, size: 48 %>
+      <span class="for-screen-reader">Add a new text page</span>
+    <% end %>
+
+    <%= button_to [ @book, Picture.new ], params: { picture: { title: "Picture"} }, class: "btn btn--plain txt-medium" do %>
+      <%= image_tag "page-picture-add.svg", aria: { hidden: true }, size: 48 %>
+      <span class="for-screen-reader">Add a new picture page</span>
+    <% end %>
+
+    <%= button_to [ @book, Section.new ], params: { section: { title: "Section"} }, class: "btn btn--plain txt-medium flex-item-justify-start" do %>
+      <%= image_tag "page-section-add.svg", aria: { hidden: true }, size: 48 %>
+      <span class="for-screen-reader">Add a new section page</span>
+    <% end %>
 
     <label class="btn txt-medium flex-item-justify-end">
       <input type="radio" name="view" id="toc-list" value="list" checked="checked" data-toc-view-target="switch" data-toc-view-type-value="list" data-action="toc-view#saveViewPref">
@@ -105,6 +114,12 @@
       <%= image_tag "view-grid.svg", aria: { hidden: true }, size: 24 %>
       <span class="for-screen-reader">Page view</span>
     </label>
+
+    <label class="btn txt-medium flex-item-justify-end">
+      <input type="checkbox" name="arrange-mode" id="arrange-mode" data-action="arrangement#setArrangeMode">
+      <%= image_tag "rearrange.svg", aria: { hidden: true }, size: 24 %>
+      <span class="for-screen-reader">Rearrange</span>
+    </label>
   </div>
 
   <div class="position-relative margin-block-start">
@@ -116,46 +131,5 @@
 
     <div data-arrangement-target="layer" class="toc"></div>
     <div data-arrangement-target="dragImage" class="arrangement-drag-image"></div>
-
-    <div class="page__picker flex-inline center align-center justify-center gap border-radius pad-block pad-inline-double no-print">
-      <div class="flex flex-column justify-center">
-        <%= form_with model: [ @book, Page.new ] do |form| %>
-          <%= form.hidden_field :title %>
-          <label>
-            <%= image_tag "page-text.svg", aria: { hidden: true }, size: 48, class: "colorize--black" %>
-            <%= tag.button class: "btn btn--positive center margin-block-start-half txt-small" do %>
-              <%= image_tag "add.svg", aria: { hidden: true }, size: 48 %>
-              <span class="for-screen-reader">Add a new text page</span>
-            <% end %>
-          </label>
-        <% end %>
-      </div>
-
-      <div class="flex flex-column justify-center">
-        <%= form_with model: [ @book, Picture.new ] do |form| %>
-          <%= form.hidden_field :title %>
-          <label>
-            <%= image_tag "page-picture.svg", aria: { hidden: true }, size: 48, class: "colorize--black" %>
-            <%= tag.button class: "btn btn--positive center margin-block-start-half txt-small" do %>
-              <%= image_tag "add.svg", aria: { hidden: true }, size: 48 %>
-              <span class="for-screen-reader">Add a photo page</span>
-            <% end %>
-          </label>
-        <% end %>
-      </div>
-
-      <div class="flex flex-column justify-center">
-        <%= form_with model: [ @book, Section.new ] do |form| %>
-          <%= form.hidden_field :title %>
-          <label>
-            <%= image_tag "page-section.svg", aria: { hidden: true }, size: 48, class: "colorize--black" %>
-            <%= tag.button class: "btn btn--positive center margin-block-start-half txt-small" do %>
-              <%= image_tag "add.svg", aria: { hidden: true }, size: 48 %>
-              <span class="for-screen-reader">Add a section page</span>
-            <% end %>
-          </label>
-        <% end %>
-      </div>
-    </div>
   </div>
 <% end %>

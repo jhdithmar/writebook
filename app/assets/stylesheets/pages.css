@@ -1,14 +1,3 @@
-.page__picker {
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  inset-block-end: var(--block-space);
-  position: sticky;
-
-  label {
-    cursor: pointer;
-  }
-}
-
 .page--picture {
   img {
     block-size: 100%;

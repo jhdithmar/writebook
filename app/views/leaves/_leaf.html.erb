@@ -17,10 +17,5 @@
     <% end %>
   </small>
 
-  <button class="btn btn--plain" hidden>
-    <%= image_tag "pencil.svg", aria: { hidden: true }, size: 24 %>
-    <span class="for-screen-reader">Edit</span>
-  </button>
-
   <%= yield if block_given? %>
 </li>
