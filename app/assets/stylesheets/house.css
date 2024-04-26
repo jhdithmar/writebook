@@ -22,6 +22,10 @@ house-md {
   p {
     hyphens: none;
   }
+
+  .code {
+    font-family: 'Courier New', Courier, monospace;
+  }
 }
 
 house-md-toolbar {
