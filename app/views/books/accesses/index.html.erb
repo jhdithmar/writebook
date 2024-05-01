@@ -6,6 +6,13 @@
       <%= image_tag "arrow-left.svg", aria: { hidden: true }, size: 24 %>
       <span class="for-screen-reader">Go back</span>
     <% end %>
+
+    <div class="breadcrumbs flex-item-justify-start">
+      <%= link_to books_path do %>
+        <%= image_tag "books.svg", aria: { label: "Books" }, size: 19, class: "colorize--black", alt: "Books" %>
+      <% end %> ▸
+      <strong><%= @book.title %></strong>
+    </div>
   </nav>
 <% end %>
 
