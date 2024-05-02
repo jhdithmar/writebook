@@ -1,6 +1,15 @@
 <% content_for(:title) { "Create your account" } %>
 <% turbo_page_requires_reload %>
 
+<% content_for :header do %>
+  <nav>
+    <%= link_to new_session_path, class: "btn flex-item-justify-end" do %>
+      <%= image_tag "login-keys.svg", aria: { hidden: true }, size: 24 %>
+      <span class="for-screen-reader">Sign in instead</span>
+    <% end %>
+  </nav>
+<% end %>
+
 <div class="panel center <%="shake" if flash[:alert] %>">
   <%= form_with model: @user, url: join_path(params[:join_code]), class: "flex flex-column gap" do |form| %>
     <%= form.text_field :name, class: "input", autocomplete: "name", placeholder: "Name", autofocus: true, required: true, data: { "1p-ignore": true } %>
