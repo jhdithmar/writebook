@@ -25,6 +25,7 @@ gem "image_processing", "~> 1.2"
 gem "diff-lcs"
 gem "rqrcode"
 gem "thruster"
+gem "useragent", github: "basecamp/useragent"
 
 group :development, :test do
   gem "debug"
