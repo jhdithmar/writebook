@@ -14,10 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :books do
-    resources :leaves do
-      resources :attachments, only: %i[ create ], controller: "books/leaves/attachments"
-    end
-
+    resources :leaves
     scope module: "books" do
       namespace :leaves do
         resources :moves, only: :create
