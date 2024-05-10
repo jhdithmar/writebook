@@ -26,7 +26,7 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-:is(a, button, input, textarea) {
+:is(a, button, input, textarea, .switch) {
   --outline-size: max(2px, 0.08em);
 
   caret-color: var(--color-link);

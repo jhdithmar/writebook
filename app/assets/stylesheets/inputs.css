@@ -66,20 +66,11 @@
   inline-size: 3em;
   position: relative;
 
-  @media (any-hover: hover) {
-    &:where(:not(:active):hover) .switch__btn {
-      filter: brightness(0.7);
-      box-shadow: none;
-    }
-  }
-
   &:has(:focus-visible) {
     .switch__btn {
-      --shadow-size: max(2px, 0.08em);
-
       box-shadow:
-        0 0 0 var(--shadow-size) var(--color-bg),
-        0 0 0 calc(var(--shadow-size) * 2) var(--color-ink);
+        0 0 0 var(--outline-size) var(--color-bg),
+        0 0 0 calc(var(--outline-size) * 2) var(--color-ink);
     }
   }
 }
