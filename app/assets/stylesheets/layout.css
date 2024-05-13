@@ -11,13 +11,18 @@
   text-align: start;
 
   &:where(.book) {
-    column-gap: 3dvw;
+    --cover-height: auto;
+    --space: clamp(2ch, 10%, 6ch);
+
+    column-gap: calc(var(--space) / 2);
     display: grid;
-    grid-template-columns: minmax(200px, 18dvw) 1fr;
-    inline-size: 120ch;
-    padding-inline: clamp(2ch, 8%, 10ch);
+    grid-template-columns: minmax(25%, 20dvw) 1fr;
+    inline-size: 100%;
+    padding-inline: var(--space);
 
     @media (max-width: 80ch) {
+      --cover-height: 75dvh;
+
       grid-template-columns: 1fr;
     }
   }
