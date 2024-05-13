@@ -28,18 +28,9 @@
   <%= image_tag @book.cover.attached? ? @book.cover : "default-cover.webp", alt: "Book cover", class: "book__cover margin-none" %>
 
   <div class="flex flex-column gap margin-block-start pad fill-shade border-radius">
-    <div class="flex align-center justify-center gap-half center">
-      <%= image_tag "lock.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
-
-      <label for="publication" class="switch txt-medium">
-        <input type="checkbox" id="publication" class="switch__input" checked="checked">
-        <span class="switch__btn round"></span>
-        <span class="for-screen-reader">Publish this book</span>
-      </label>
-
-      <%= image_tag "world.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
-    </div>
-
+    <% if @book.editable? %>
+      <%= render "publication", book: @book %>
+    <% end %>
     <%= render "public" %>
   </div>
 </aside>

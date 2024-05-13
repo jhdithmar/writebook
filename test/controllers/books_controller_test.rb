@@ -39,4 +39,14 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert book.editable?(user: users(:jz))
     assert book.readonly?(user: users(:jason))
   end
+
+  test "publishing a book" do
+    book = books(:manual)
+
+    assert_changes -> { book.reload.published? }, from: false, to: true do
+      patch book_url(book), params: { book: { published: "1" } }
+    end
+
+    assert_redirected_to book_url(book)
+  end
 end
