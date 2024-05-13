@@ -29,21 +29,5 @@
 </article>
 
 <% content_for :footer do %>
-  <%= house_toolbar id: "house_toolbar", class: "flex align-center" do %>
-    <span class="flex-item-justify-start">
-      <%= render "leaves/delete", leaf: @leaf %>
-    </span>
-    <%= house_button "bold" do %>
-      <%= image_tag "text-bold.svg", aria: { hidden: "true" }, size: "16" %>
-      <span class="for-screen-reader">Text style: bold</span>
-    <% end %>
-    <%= house_button "italic" do %>
-      <%= image_tag "text-italic.svg", aria: { hidden: "true" }, size: "16" %>
-      <span class="for-screen-reader">Text style: italic</span>
-    <% end %>
-    <%= house_button "strikethrough", class: "flex-item-justify-start" do %>
-      <%= image_tag "text-strike.svg", aria: { hidden: "true" }, size: "16" %>
-      <span class="for-screen-reader">Text style: strikethrough</span>
-    <% end %>
-  <% end %>
+  <%= render "house_toolbar" %>
 <% end %>

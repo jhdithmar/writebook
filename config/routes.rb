@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :books do
     resources :leaves
-
     scope module: "books" do
       namespace :leaves do
         resources :moves, only: :create
@@ -40,6 +39,11 @@ Rails.application.routes.draw do
 
   direct :edit_leafable do |leaf, options|
     route_for "edit_book_#{leaf.leafable_name}", leaf.book, leaf.leafable, options
+  end
+
+  namespace :action_text, path: nil do
+    get "/u/*slug" => "markdown/uploads#show", as: :markdown_upload
+    post "/uploads" => "markdown/uploads#create", as: :markdown_uploads
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

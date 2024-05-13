@@ -4,7 +4,7 @@
   <%= render "leaves/header", book: @book, leaf: @leaf %>
 <% end %>
 
-<%= render_markdown @page.body if @page&.body %>
+<%= @page.body.to_html %>
 
 <%= render "leaves/history", leaf: @leaf %>
 

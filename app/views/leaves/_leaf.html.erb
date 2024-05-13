@@ -4,7 +4,7 @@
   <div class="toc__thumbnail">
     <%= link_to "Open #{ leaf.title }", leafable_path(leaf), class: "toc__link", target: "_top" %>
     <%= leaf.title if leaf.leafable.is_a?(Section) %>
-    <%= render_markdown leaf.leafable.body if leaf.leafable.is_a?(Page) && leaf.leafable&.body && leaf.leafable.is_a?(Page) %>
+    <%= leaf.leafable.body.to_html if leaf.leafable.is_a?(Page) %>
     <%= image_tag leaf.leafable.image.variant(:large) if leaf.leafable.is_a?(Picture) && leaf.leafable.image.attached? %>
   </div>
 
@@ -14,7 +14,7 @@
 
   <small class="toc__wordcount translucent">
     <% if leaf.leafable.is_a?(Page) %>
-      <%= word_count(leaf.leafable.body) %>
+      <%= word_count(leaf.leafable.body.content) %>
     <% end %>
   </small>
 
