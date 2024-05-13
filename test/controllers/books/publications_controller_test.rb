@@ -4,7 +4,7 @@ class Books::PublicationsTest < ActionDispatch::IntegrationTest
   setup do
     @book = books(:manual)
 
-    sign_in :kevin
+    sign_in :david
   end
 
   test "publish a book" do
