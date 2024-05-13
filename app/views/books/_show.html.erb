@@ -11,7 +11,11 @@
     <% end %>
 
     <div class="breadcrumbs">
-      <%= link_to books_path do %>
+      <% if book.editable? %>
+        <%= link_to books_path do %>
+          <%= image_tag "books.svg", aria: { label: "Books" }, size: 19, class: "colorize--black", alt: "Books" %>
+        <% end %>
+      <% else %>
         <%= image_tag "books.svg", aria: { label: "Books" }, size: 19, class: "colorize--black", alt: "Books" %>
       <% end %> ▸
       <strong><%= book.title %></strong>
