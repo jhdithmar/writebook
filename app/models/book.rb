@@ -5,6 +5,7 @@ class Book < ApplicationRecord
   has_one_attached :cover
 
   scope :ordered, -> { order(:title) }
+  scope :published, -> { where(published: true) }
 
   def press(leafable)
     transaction do

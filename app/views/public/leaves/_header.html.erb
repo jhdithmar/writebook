@@ -1,0 +1,17 @@
+<nav>
+  <%= link_to public_book_path(book.slug), class: "btn flex-item-justify-start" do %>
+    <%= image_tag "arrow-left.svg", aria: { hidden: true }, size: 24 %>
+    <span class="for-screen-reader">Go back</span>
+  <% end %>
+
+  <div class="breadcrumbs">
+    <%= image_tag "books.svg", aria: { label: "Books" }, size: 19, class: "colorize--black", alt: "Books" %> ▸
+    <%= link_to book.title, public_book_path(book.slug) %> ▸
+    <strong><%= leaf.leafable.title %></strong>
+  </div>
+
+  <button class="btn flex-item-justify-end" data-action="fullscreen#toggle">
+    <%= image_tag "expand.svg", aria: { hidden: true }, size: 24 %>
+    <span class="for-screen-reader">Enter fullscreen</span>
+  </button>
+</nav>

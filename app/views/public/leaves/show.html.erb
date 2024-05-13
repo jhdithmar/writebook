@@ -1,0 +1,23 @@
+<% content_for(:title) { page_title(@leaf, @book) } %>
+
+<% content_for :header do %>
+  <%= render "header", book: @book, leaf: @leaf %>
+<% end %>
+
+<% if @leaf.section? %>
+  <div class="page--section">
+    <h1><%= @leaf.title %></h1>
+  </div>
+<% elsif @leaf.page? %>
+  <div class="page--page">
+    <%= @leaf.page.body.to_html %>
+  </div>
+<% elsif @leaf.picture? %>
+  <div class="page--picture">
+    <%= image_tag @leaf.picture.image.variant(:large) if @leaf.picture.image.attached? %>
+  </div>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render "leaves/navigation", leaf: @leaf %>
+<% end %>

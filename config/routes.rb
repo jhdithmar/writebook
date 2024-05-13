@@ -36,7 +36,11 @@ Rails.application.routes.draw do
   resources :users
 
   direct :leafable do |leaf, options|
-    route_for "book_#{leaf.leafable_name}", leaf.book, leaf.leafable, options
+    if try(:public_view?)
+      route_for "public_leaf", leaf.book.slug, leaf, options
+    else
+      route_for "book_#{leaf.leafable_name}", leaf.book, leaf.leafable, options
+    end
   end
 
   direct :edit_leafable do |leaf, options|
@@ -52,5 +56,6 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  get "/:slug/:leaf_id", to: "public/leaves#show", as: :public_leaf
   get "/:slug", to: "public/books#show", as: :public_book
 end

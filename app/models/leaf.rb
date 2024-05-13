@@ -8,4 +8,8 @@ class Leaf < ApplicationRecord
   delegate :title, to: :leafable
 
   scope :with_leafables, -> { includes(:leafable) }
+
+  def to_param
+    "#{id}-#{title}".parameterize
+  end
 end

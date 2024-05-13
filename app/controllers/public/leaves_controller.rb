@@ -1,8 +1,8 @@
 module Public
-  class BooksController < BaseController
+  class LeavesController < BaseController
     def show
       @book = Book.published.find_by! slug: params[:slug]
-      @leaves = @book.leaves.with_leafables.positioned
+      @leaf = @book.leaves.find params[:leaf_id]
     end
   end
 end
