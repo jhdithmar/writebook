@@ -11,11 +11,13 @@
   --lch-orange: 70% 0.2 44;
   --lch-red: 51% 0.2 31;
   --lch-green: 65.59% 0.234 142.49;
+  --lch-green-light: 95% 0.03 142.49;
   --lch-always-black: 0% 0 0;
 
   /* Abstractions */
   --color-negative: oklch(var(--lch-red));
   --color-positive: oklch(var(--lch-green));
+  --color-positive-light: oklch(var(--lch-green-light));
   --color-bg: oklch(var(--lch-white));
   --color-ink: oklch(var(--lch-black));
   --color-ink-reversed: oklch(var(--lch-white));
