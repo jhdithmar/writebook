@@ -32,7 +32,6 @@
 }
 
 .book__title {
-  font-size: clamp(2rem, 6cqi, 3rem);
   font-weight: 750;
 }
 

@@ -48,7 +48,7 @@
   border: 1px solid var(--color-subtle-dark);
   color: inherit;
   display: block;
-  font-size: clamp(0.33rem, 6cqi, 1rem);
+  font-size: var(--font-small-responsive);
   line-height: 1.4;
   margin-block-end: var(--block-space-half);
   overflow: clip;
@@ -91,7 +91,7 @@
   color: inherit;
   display: flex;
   flex-direction: column;
-  font-size: clamp(0.8rem, 6cqi, 1.2rem);
+  font-size: var(--font-medium-responsive);
   gap: var(--inline-space);
   line-height: 1.2;
   text-decoration: none;
@@ -100,7 +100,6 @@
     flex-direction: row;
     flex-grow: 1;
     font-size: inherit;
-    gap: var(--inline-space);
     white-space: nowrap;
 
     &:is(a) {
@@ -131,8 +130,6 @@
 }
 
 .toc__wordcount {
-  font-size: clamp(0.8rem, 6cqi, 1.2rem);
-
   .toc__container:where(:has(#toc-list:checked)) & {
     font-size: 0.8em;
   }

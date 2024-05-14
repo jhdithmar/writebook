@@ -7,16 +7,23 @@
   --block-space-half: calc(var(--block-space) / 2);
   --block-space-double: calc(var(--block-space) * 2);
 
+  --font-small-responsive: clamp(0.8rem, 6cqi, 1.2rem);
   --font-medium-responsive: clamp(1rem, 2.5cqi, 1.5rem);
+  --font-large-responsive: clamp(1.3rem, 4cqi, 2rem);
+  --font-x-large-responsive: clamp(1.8rem, 6cqi, 3.6rem);
 }
 
 /* Text */
 .txt-small { font-size: 0.8rem; }
 .txt-medium { font-size: 1rem; }
-.txt-medium--responsive { font-size: var(--font-medium-responsive); }
 .txt-large { font-size: 1.4rem; }
 .txt-x-large { font-size: 1.8rem; }
 .txt-xx-large { font-size: 2.4rem; }
+
+.txt-small--responsive { font-size: var(--font-small-responsive); }
+.txt-medium--responsive { font-size: var(--font-medium-responsive); }
+.txt-large--responsive { font-size: var(--font-large-responsive); }
+.txt-x-large--responsive { font-size: var(--font-x-large-responsive); }
 
 .txt-align-center { text-align: center; }
 .txt-align-start { text-align: start; }

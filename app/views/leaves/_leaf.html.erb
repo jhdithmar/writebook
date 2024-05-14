@@ -12,7 +12,7 @@
     <span class="overflow-ellipsis"><%= leaf.title %></span>
   <% end %>
 
-  <small class="toc__wordcount translucent">
+  <small class="toc__wordcount translucent txt-small--responsive">
     <% if leaf.leafable.is_a?(Page) %>
       <%= word_count(leaf.leafable.body.content) %>
     <% end %>
