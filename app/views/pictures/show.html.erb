@@ -5,7 +5,7 @@
 <% end %>
 
 <div class="page--picture">
-  <%= image_tag @picture.image.variant(:large) if @picture.image.attached? %>
+  <%= image_tag  @picture.image.attached? ? @picture.image.variant(:large) : "default-picture.webp" %>
 </div>
 
 <% content_for :footer do %>

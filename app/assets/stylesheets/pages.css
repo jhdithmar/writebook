@@ -1,7 +1,7 @@
 .page--picture {
   img {
-    block-size: 100%;
-    object-fit: cover;
+    max-block-size: 100%;
+    max-inline-size: 100%;
   }
 }
 
