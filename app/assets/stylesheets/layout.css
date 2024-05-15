@@ -20,7 +20,7 @@
     inline-size: 100%;
     padding-inline: var(--space);
 
-    @media (max-width: 80ch) {
+    @media (max-width: 100ch) {
       --cover-height: 75dvh;
 
       grid-template-columns: 1fr;
