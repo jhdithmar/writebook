@@ -26,11 +26,9 @@ export default class extends Controller {
   #scrollToLastReadParagraph() {
     const [ leafId, lastReadParagraphIndex ] = getReadingProgress(this.bookIdValue)
 
-    console.log(`Scrolling to last read paragraph ${lastReadParagraphIndex} in leaf ${leafId}`)
-
     if (leafId === this.leafIdValue && lastReadParagraphIndex > 0) {
       const lastReadParagraph = this.paragraphs[lastReadParagraphIndex]
-      lastReadParagraph?.scrollIntoView({ behavior: "smooth", block: "end" })
+      lastReadParagraph?.scrollIntoView({ behavior: "instant", block: "end" })
     }
   }
 
