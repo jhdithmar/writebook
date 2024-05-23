@@ -10,9 +10,13 @@ module Leaf::Editable
 
   def edit(leafable_params)
     transaction do
-      new_leafable = leafable.dup.tap { |l| l.update!(leafable_params) }
+      leafable.assign_attributes leafable_params
+      significant_changes = leafable.changes.except("title")
+
+      new_leafable = leafable.dup.tap(&:save!)
       update!(leafable: new_leafable)
-      edits.revision.create!(leafable: new_leafable)
+
+      edits.revision.create!(leafable: new_leafable) if significant_changes.any?
     end
   end
 
