@@ -19,12 +19,4 @@ module Leafable
   def leafable_name
     self.class.leafable_name
   end
-
-  def dup_with_attachments
-    dup.tap do |new|
-      attachment_reflections.each do |name, _|
-        new.send(name).attach(self.send(name).blob)
-      end
-    end
-  end
 end

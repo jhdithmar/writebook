@@ -24,10 +24,18 @@ module Leaf::Editable
 
     def update_leafable(leaf_params, leafable_params)
       transaction do
-        new_leafable = leafable.dup_with_attachments
+        new_leafable = dup_leafable_with_attachments leafable
         new_leafable.update!(leafable_params)
         edits.revision.create!(leafable: leafable)
         update! leaf_params.merge(leafable: new_leafable)
+      end
+    end
+
+    def dup_leafable_with_attachments(leafable)
+      leafable.dup.tap do |new|
+        attachment_reflections.each do |name, _|
+          new.send(name).attach(self.send(name).blob)
+        end
       end
     end
 
