@@ -17,7 +17,7 @@
 <% end %>
 
 <div class="panel borderless center pad fill-shade flex flex-column margin-block">
-  <%= render "invite" %>
+  <%= turbo_frame_tag :join_code_panel, src: account_join_path %>
 </div>
 
 <div class="panel borderless center pad fill-none flex flex-column gap">

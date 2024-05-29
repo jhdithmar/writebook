@@ -1,0 +1,3 @@
+<%= turbo_frame_tag :join_code_panel do %>
+  <%= render "accounts/joins/form", books: @books, editable: @editable, readable: @readable, join_code: @join_code %>
+<% end %>

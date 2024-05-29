@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resource :account do
     scope module: "accounts" do
       resource :join_code, only: :create
+      resource :join
     end
   end
 

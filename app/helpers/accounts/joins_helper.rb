@@ -1,0 +1,2 @@
+module Accounts::JoinsHelper
+end

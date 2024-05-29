@@ -1,5 +1,5 @@
 <div class="flex flex-column align-center gap txt-medium--responsive">
-  <% url = join_url(Current.account.join_code) %>
+  <% url = join_url(join_code) %>
 
   <label class="flex flex-column gap full-width txt-align-center">
     <strong id="invite_label" class="invite-label">Share to invite more people</strong>
@@ -44,4 +44,25 @@
       <% end %>
     <% end %>
   </div>
+
+  <%= form_with url: account_join_path do |form| %>
+    <% books.each do |book| %>
+      <div class="flex align-center gap-half pad-inline txt-medium--responsive" data-controller="dependent-checkbox">
+        <span class="overflow-ellipsis txt-medium--responsive"><%= book.title %></span>
+        <hr class="flex-item-grow margin-none">
+
+        <label class="btn btn--small flex-item-no-shrink">
+          <%= check_box_tag "editable_ids[]", book.id, editable.include?(book.id) || readable.include?(book.id), id: nil, data: { action: "dependent-checkbox#input", dependent_checkbox_target: "dependant" } %>
+          <%= image_tag "write.svg", size: 24, aria: { hidden: "true" } %>
+          <span class="for-screen-reader">Role: Writer</span>
+        </label>
+
+        <label class="btn btn--small flex-item-no-shrink">
+          <%= check_box_tag "readable_ids[]", book.id, readable.include?(book.id), id: nil, data: { action: "dependent-checkbox#input", dependent_checkbox_target: "dependee" } %>
+          <%= image_tag "eye.svg", size: 24, aria: { hidden: "true" } %>
+          <span class="for-screen-reader">Role: Reader</span>
+        </label>
+      </div>
+    <% end %>
+  <% end %>
 </div>
