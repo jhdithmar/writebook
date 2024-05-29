@@ -6,11 +6,13 @@ const Direction = {
   AFTER: 1
 }
 
+const NEW_ITEM_ID = "dragged_item"
+const NEW_ITEM_DATA_TYPE = "x-workbook/create"
 const ITEM_SELECTOR = "[data-arrangement-target=item]"
 
 export default class extends Controller {
   static targets = [ "container", "item", "layer", "dragImage" ]
-  static classes = [ "cursor", "selected", "placeholder", "moveMode" ]
+  static classes = [ "cursor", "selected", "placeholder", "addingMode", "moveMode" ]
   static values = { url: String }
 
   #cursorPosition
@@ -112,6 +114,32 @@ export default class extends Controller {
 
   // Actions - drag & drop
 
+  dragStartCreate(event) {
+    const entry = document.createElement("li")
+    entry.id = NEW_ITEM_ID
+    entry.innerHTML = "&nbsp;"
+    entry.dataset.arrangementTarget = "item"
+    this.containerTarget.prepend(entry)
+
+    event.dataTransfer.effectAllowed = "move"
+    event.dataTransfer.setData(NEW_ITEM_DATA_TYPE, event.params.url)
+
+    this.#dragItem = entry
+    this.#setSelection(entry, false)
+
+    this.containerTarget.classList.add(this.addingModeClass)
+    this.#enableDraggingLayer()
+  }
+
+  dragEndCreate(event) {
+    if (!this.#wasDropped) {
+      this.#dragItem.remove()
+    }
+
+    this.containerTarget.classList.remove(this.addingModeClass)
+    this.#disableDraggingLayer()
+  }
+
   dragStart(event) {
     this.#wasDropped = false
     this.#dragItem = event.target
@@ -126,16 +154,18 @@ export default class extends Controller {
       event.dataTransfer.setDragImage(this.dragImageTarget, 0, 0)
     }
 
-    this.#buildLayer()
-
-    setTimeout(() => {
-      this.containerTarget.style.opacity = "0"
-    }, 0)
+    this.#enableDraggingLayer()
   }
 
-  drop() {
+  drop(event) {
     this.#wasDropped = true
-    this.#submitMove()
+
+    const createURL = event.dataTransfer.getData(NEW_ITEM_DATA_TYPE)
+    if (createURL) {
+      this.#submitCreate(createURL)
+    } else {
+      this.#submitMove()
+    }
   }
 
   dragEnd() {
@@ -146,8 +176,7 @@ export default class extends Controller {
       this.#originalOrder = undefined
     }
 
-    this.containerTarget.style.opacity = "1"
-    this.#clearLayer()
+    this.#disableDraggingLayer()
   }
 
   dragOver(event) {
@@ -223,6 +252,19 @@ export default class extends Controller {
       }
     })
     this.#renderSelection()
+  }
+
+  #enableDraggingLayer() {
+    this.#buildLayer()
+
+    setTimeout(() => {
+      this.containerTarget.style.opacity = "0"
+    }, 0)
+  }
+
+  #disableDraggingLayer() {
+    this.containerTarget.style.opacity = "1"
+    this.#clearLayer()
   }
 
   #buildLayer() {
@@ -313,6 +355,15 @@ export default class extends Controller {
     ids.forEach((id) => body.append("id[]", id))
 
     post(this.urlValue, { body })
+  }
+
+  #submitCreate(url) {
+    const position = this.#selection[0]
+
+    const body = new FormData()
+    body.append("position", position)
+
+    post(url, { body, responseKind: "turbo-stream" })
   }
 
   get #selectionStart() {

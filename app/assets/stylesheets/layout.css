@@ -1,5 +1,5 @@
 :where(#main) {
-  --footer-height: calc((var(--block-space) * 2) + var(--btn-size));
+  --footer-height: calc((var(--block-space) * 2) + 2.65rem);
 
   container-type: inline-size;
   font-size: var(--font-medium-responsive);
@@ -7,7 +7,7 @@
   margin-block: var(--block-space);
   margin-inline: auto;
   max-inline-size: 100%;
-  padding-block: 0 var(--footer-height);
+  min-block-size: calc(100vh - (2 * var(--footer-height)));
   padding-inline: clamp(var(--inline-space), 5cqi, calc(var(--inline-space) * 3));
   text-align: start;
 
@@ -55,27 +55,28 @@
     view-transition-name: nav;
   }
 
-  @supports (animation-timeline: scroll()) {
+  /* @supports (animation-timeline: scroll()) {
     animation: slide-up linear both;
     animation-timeline: scroll();
     animation-range: 0 150px;
-  }
+  } */
 }
 
 :where(#footer) {
-  /* animation: slide-down linear both; */
-  /* animation-timeline: scroll(); */
-	/* animation-range: 0 150px; */
   border-block-start: 1px solid var(--color-subtle);
   inset: auto 0 0 0;
-  position: fixed;
+  position: sticky;
   view-transition-name: footer;
+
+  &:has(.book__nav) {
+    position: static;
+  }
 }
 
 :where(#header, #footer) {
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  background-color: oklch(var(--lch-white) / 0.5);
+  /* -webkit-backdrop-filter: blur(20px); */
+  /* backdrop-filter: blur(20px); */
+  background-color: var(--color-bg);
   z-index: 1;
 
   > * {

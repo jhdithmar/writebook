@@ -4,9 +4,22 @@
   <%= render "leaves/header", book: @book, leaf: @leaf %>
 <% end %>
 
-<div class="page--picture">
-  <%= image_tag  @picture.image.attached? ? @picture.image.variant(:large) : "default-picture.webp" %>
-</div>
+<figure class="page--picture flex flex-column align-center gap">
+  <% if @picture.image.attached? %>
+    <%= link_to rails_blob_path(@picture.image), data: {
+          action: "lightbox#open:prevent",
+          lightbox_target: "image",
+          lightbox_url_value: rails_blob_path(@picture.image, disposition: "attachment", only_path: true) } do %>
+      <%= image_tag @picture.image.variant(:large), loading: "lazy" %>
+    <% end %>
+  <% else %>
+    <%= image_tag "default-picture.webp", alt: "No image uploaded", loading: "lazy" %>
+  <% end %>
+
+  <figcaption class="txt-small--responsive">
+    <%= @picture.caption %>
+  </figcaption>
+</figure>
 
 <% content_for :footer do %>
   <%= render "leaves/navigation", leaf: @leaf %>

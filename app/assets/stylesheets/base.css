@@ -70,19 +70,6 @@ a:not([class]) {
   list-style: none;
 }
 
-.skip-navigation {
-  --left-offset: -999em;
-
-  inset-block-start: var(--block-space-half);
-  inset-inline-start: var(--left-offset);
-  position: absolute;
-  z-index: 2;
-
-  &:focus-visible {
-    --left-offset: var(--block-space-half);
-  }
-}
-
 .panel {
   --panel-size: 40ch;
 

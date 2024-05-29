@@ -27,9 +27,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="fullscreen">
-    <a href="#main" class="skip-navigation btn">Skip to main</a>
-
+  <body data-controller="fullscreen lightbox">
     <header id="header">
       <%= yield :header %>
     </header>
@@ -41,5 +39,7 @@
     <footer id="footer">
       <%= yield :footer %>
     </footer>
+
+    <%= render "layouts/lightbox" %>
   </body>
 </html>

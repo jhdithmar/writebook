@@ -6,4 +6,20 @@ module LeavesHelper
       reading_tracker_leaf_id_value: leaf.id
     }, **options, &block
   end
+
+  def show_or_edit_leafable_path(leaf)
+    if leaf.book.editable?
+      if leaf.leafable.is_a?(Page) && leaf.leafable.body.to_html.empty?
+        edit_leafable_path(leaf)
+      elsif leaf.leafable.is_a?(Section) && leaf.title == "Section"
+        edit_leafable_path(leaf)
+      elsif leaf.leafable.is_a?(Picture) && !leaf.leafable.image.attached?
+        edit_leafable_path(leaf)
+      else
+        leafable_path(leaf)
+      end
+    else
+      leafable_path(leaf)
+    end
+  end
 end

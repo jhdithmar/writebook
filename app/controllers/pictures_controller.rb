@@ -1,7 +1,7 @@
 class PicturesController < LeafablesController
   private
-    def leafable_class
-      Picture
+    def new_leafable
+      Picture.new leafable_params
     end
 
     def leafable_params

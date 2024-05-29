@@ -1,5 +1,12 @@
 .arrangement__container {
   &:where(:has(#arrange-mode:checked)) {
+    .disable-when-arranging {
+      cursor: not-allowed;
+      filter: grayscale(100%) contrast(0.5);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
     .hide-when-arranging {
       display: none;
     }
@@ -22,6 +29,14 @@
       .arrangement__item {
         animation: fidget 500ms infinite;
       }
+    }
+  }
+}
+
+.arrangement-adding-mode
+  .arrangement__item {
+    * {
+      pointer-events: none;
     }
   }
 }

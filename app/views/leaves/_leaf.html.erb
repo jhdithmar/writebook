@@ -2,7 +2,7 @@
   <%= image_tag "handle.svg", aria: { hidden: true }, size: 24, class: "arrangement__handle translucent colorize--black" %>
 
   <div class="toc__thumbnail">
-    <%= link_to leafable_path(leaf), class: "toc__link", data: { turbo_frame: "_top" } do %>
+    <%= link_to show_or_edit_leafable_path(leaf), class: "toc__link", data: { turbo_frame: "_top" } do %>
       <span class="for-screen-reader">Open <%= leaf.title %></span>
     <% end %>
 
@@ -15,7 +15,7 @@
     <% end %>
   </div>
 
-  <%= link_to leafable_path(leaf), class: "toc__title min-width", data: { turbo_frame: "_top" } do %>
+  <%= link_to show_or_edit_leafable_path(leaf), class: "toc__title min-width", data: { turbo_frame: "_top" } do %>
     <span class="overflow-ellipsis"><%= leaf.title %></span>
   <% end %>
 

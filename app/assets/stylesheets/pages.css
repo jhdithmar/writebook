@@ -1,15 +1,15 @@
-.page--picture {
-  img {
-    max-block-size: 100%;
-    max-inline-size: 100%;
+  body:has(.page--section) {
+  --btn-background: var(--color-subtle);
+
+  background-color: var(--color-subtle);
+
+  :is(#header, #footer) {
+    background-color: var(--color-subtle);
+    border-color: var(--color-subtle-dark);
   }
 }
 
-.page--section {
-  background-color: var(--color-subtle);
-}
-
-:is(.page--picture, .page--section) {
+:is(.page--section) {
   block-size: calc(100dvh - (var(--footer-height) * 2) - var(--block-space));
   display: grid;
   place-items: center;

@@ -6,8 +6,12 @@ class PagesController < LeafablesController
       cookies.delete "reading_progress_#{@book.id}"
     end
 
-    def leafable_class
-      Page
+    def default_leaf_params
+      { title: "Untitled" }
+    end
+
+    def new_leafable
+      Page.new leafable_params
     end
 
     def leafable_params

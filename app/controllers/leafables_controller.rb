@@ -2,12 +2,14 @@ class LeafablesController < ApplicationController
   include SetBookLeaf
 
   def new
-    @leafable = leafable_class.new
+    @leafable = new_leafable
   end
 
   def create
     @leafable = new_leafable
-    @book.leaves.create! leaf_params.merge(leafable: @leafable)
+    @leaf = @book.leaves.create! leaf_params.merge(leafable: @leafable)
+
+    position_new_leaf @leaf
 
     respond_to do |format|
       format.turbo_stream { render }
@@ -36,19 +38,25 @@ class LeafablesController < ApplicationController
   end
 
   private
-    def new_leafable
-      leafable_class.new leafable_params
-    end
-
     def leaf_params
-      params.require(:leaf).permit(:title)
+      default_leaf_params.merge params.fetch(:leaf, {}).permit(:title)
     end
 
-    def leafable_class
+    def default_leaf_params
+      { title: new_leafable.model_name.human }
+    end
+
+    def new_leafable
       raise NotImplementedError.new "Implement in subclass"
     end
 
     def leafable_params
       raise NotImplementedError.new "Implement in subclass"
+    end
+
+    def position_new_leaf(leaf)
+      if position = params[:position]&.to_i
+        leaf.move_to_position position
+      end
     end
 end
