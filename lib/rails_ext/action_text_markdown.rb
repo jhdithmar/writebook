@@ -33,7 +33,7 @@ module ActionText::Markdown::Uploads
   end
 end
 
-ActiveSupport.on_load :active_storage do
+ActiveSupport.on_load :active_storage_attachment do
   class ActionText::Markdown
     include ActionText::Markdown::Uploads
   end
