@@ -1,6 +1,6 @@
-<div class="flex align-center gap-half pad-inline txt-medium--responsive" data-controller="dependent-checkbox">
+<div class="flex align-center gap txt-medium--responsive" data-controller="dependent-checkbox">
   <span class="overflow-ellipsis txt-medium--responsive"><%= user.name %></span>
-  <hr class="flex-item-grow margin-none" aria-hidden="true">
+  <hr class="flex-item-grow margin-none" aria-hidden="true" style="--border-style: dashed">
 
   <label class="btn btn--small flex-item-no-shrink">
     <%= check_box_tag "editor_ids[]", user.id, book.editable?(user: user) || user == creating_user, id: nil, disabled: user.current?, data: { action: "dependent-checkbox#input", dependent_checkbox_target: "dependant" }, aria: { label: "Role: Writer" } %>
@@ -8,7 +8,7 @@
     <span class="for-screen-reader"></span>
   </label>
 
-  <label class="btn btn--small flex-item-no-shrink">
+  <label class="btn btn--small flex-item-no-shrink book-access__reader">
     <%= check_box_tag "reader_ids[]", user.id, book.accessable?(user: user) || user == creating_user, id: nil, disabled: user.current?, data: { action: "dependent-checkbox#input", dependent_checkbox_target: "dependee" }, aria: { label: "Role: Reader" } %>
     <%= image_tag "eye.svg", size: 24, aria: { hidden: "true" } %>
     <span class="for-screen-reader">r</span>

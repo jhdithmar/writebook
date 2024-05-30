@@ -64,3 +64,15 @@
   position: sticky;
   z-index: 1;
 }
+
+.book-access {
+  &:has(.book-access__switch:checked) {
+    .book-access__reader {
+      background-color: var(--color-link);
+
+      img {
+        filter: invert(1);
+      }
+    }
+  }
+}

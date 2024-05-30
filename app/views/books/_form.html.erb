@@ -38,7 +38,25 @@
     </div>
   </div>
 
-  <div class="border-radius center pad fill-shade flex flex-column gap margin-block-double">
+  <div class="book-access border-radius center pad-double fill-shade flex flex-column gap margin-block-double">
+    <div class="flex align-center gap txt-medium--responsive">
+      <%= image_tag "eye.svg", aria: { hidden: true }, size: 36, class: "colorize--black" %>
+
+      <div class="min-width">
+        <div class="overflow-ellipsis fill-shade"><strong>Everyone</strong></div>
+      </div>
+
+      <hr class="flex-item-grow margin-none" aria-hidden="true" style="--border-style: dashed">
+
+      <label for="everyone_reads" class="switch">
+        <input type="checkbox" id="everyone_reads" class="switch__input book-access__switch" checked="checked">
+        <span class="switch__btn"></span>
+        <span class="for-screen-reader">Only allow some people to read this book</span>
+      </label>
+    </div>
+
+    <hr class="full-width margin-block-start margin-block-end-half">
+
     <%= render partial: "books/accesses/access", collection: users, as: :user, locals: { book: book, creating_user: creating_user } %>
   </div>
 

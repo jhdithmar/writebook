@@ -96,6 +96,8 @@
 
 /* Padding */
 .pad { padding: var(--block-space) var(--inline-space); }
+.pad-double { padding: var(--block-space-double) var(--inline-space-double); }
+
 .pad-block { padding-block: var(--block-space); }
 .pad-block-start { padding-block-start: var(--block-space); }
 .pad-block-end { padding-block-end: var(--block-space); }
@@ -148,7 +150,7 @@
 .fill-black { background-color: var(--color-ink); }
 .fill-white { background-color: var(--color-ink-reversed); }
 .fill-shade { background-color: var(--color-subtle-light); }
-.fill-positive { background-color: var(--color-positive-light); }
+.fill-selected { background-color: var(--color-selected); }
 .fill-transparent { background-color: transparent; }
 
 .translucent { opacity: var(--opacity, 0.5); }

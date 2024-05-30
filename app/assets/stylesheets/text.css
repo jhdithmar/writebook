@@ -49,7 +49,7 @@
 
 hr {
   border-color: var(--color-subtle-dark);
-  border-style: solid none none;
+  border-style: var(--border-style, solid) none none;
   margin: 2lh auto;
 }
 
