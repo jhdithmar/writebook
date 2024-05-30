@@ -303,12 +303,12 @@ export default class extends Controller {
     const parent = element.closest(".position-relative").getBoundingClientRect()
 
     return {
-        top: rect.top - parent.top,
-        left: rect.left - parent.left,
-        bottom: rect.bottom - parent.bottom,
-        right: rect.right - parent.right,
-        width: rect.width,
-        height: rect.height
+      top: rect.top - parent.top,
+      left: rect.left - parent.left,
+      bottom: rect.bottom - parent.bottom,
+      right: rect.right - parent.right,
+      width: rect.width,
+      height: rect.height
     };
   }
 
