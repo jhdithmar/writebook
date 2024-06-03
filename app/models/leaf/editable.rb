@@ -35,6 +35,8 @@ module Leaf::Editable
     def update_without_recording_edit(leaf_params, leafable_params)
       transaction do
         leafable.update!(leafable_params)
+
+        edits.last&.touch
         update! leaf_params
       end
     end
@@ -43,6 +45,7 @@ module Leaf::Editable
       transaction do
         new_leafable = dup_leafable_with_attachments leafable
         new_leafable.update!(leafable_params)
+
         edits.revision.create!(leafable: leafable)
         update! leaf_params.merge(leafable: new_leafable)
       end

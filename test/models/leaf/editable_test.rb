@@ -15,11 +15,15 @@ class Leaf::EditableTest < ActiveSupport::TestCase
       leaves(:welcome_page).edit leafable_params: { body: "First change" }
     end
 
+    freeze_time
+    travel 1.minute
+
     assert_no_difference -> { leaves(:welcome_page).edits.count } do
       leaves(:welcome_page).edit leafable_params: { body: "Second change" }
     end
 
     assert_equal "Second change", leaves(:welcome_page).page.body.content
+    assert_equal Time.now, leaves(:welcome_page).edits.last.updated_at
 
     travel 1.hour
 
