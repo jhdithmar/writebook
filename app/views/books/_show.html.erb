@@ -47,6 +47,10 @@
         <%= image_tag "settings.svg", aria: { hidden: true }, size: 24 %>
         <span class="for-screen-reader">Edit book settings</span>
       <% end %>
+
+      <span hidden>
+        <%= editing_mode_toggle_switch %>
+      </span>
     <% end %>
   </nav>
 <% end %>
