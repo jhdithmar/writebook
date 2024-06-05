@@ -17,6 +17,10 @@
       * {
         pointer-events: none;
       }
+
+      .btn {
+        opacity: 0.3;
+      }
     }
 
     &:where(:has(#toc-list:checked)) {
