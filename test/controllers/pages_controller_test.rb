@@ -6,8 +6,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create" do
-    post book_pages_path(books(:handbook)), params: { leaf: { title: "Another page" }, page: { body: "With interesting words." } }
-    assert_redirected_to books(:handbook)
+    post book_pages_path(books(:handbook), format: :turbo_stream), params: { leaf: { title: "Another page" }, page: { body: "With interesting words." } }
+    assert_response :success
 
     new_page = Page.last
     assert_equal "Another page", new_page.title
@@ -17,18 +17,18 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test "create with default params" do
     assert_changes -> { Page.count }, +1 do
-      post book_pages_path(books(:handbook))
+      post book_pages_path(books(:handbook), format: :turbo_stream)
     end
-    assert_redirected_to books(:handbook)
+    assert_response :success
 
     assert_equal "Untitled", Page.last.title
   end
 
   test "create at a specific position" do
     assert_changes -> { Page.count }, +1 do
-      post book_pages_path(books(:handbook), params: { position: 2 })
+      post book_pages_path(books(:handbook), format: :turbo_stream), params: { position: 2 }
     end
-    assert_redirected_to books(:handbook)
+    assert_response :success
 
     assert_equal 2, books(:handbook).leaves.before(Page.last.leaf).count
   end

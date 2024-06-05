@@ -6,8 +6,8 @@ class SectionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create" do
-    post book_sections_path(books(:handbook))
-    assert_redirected_to books(:handbook)
+    post book_sections_path(books(:handbook), format: :turbo_stream)
+    assert_response :success
 
     new_section = Section.last
     assert_equal "Section", new_section.title
