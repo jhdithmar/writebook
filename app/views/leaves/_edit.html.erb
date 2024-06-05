@@ -1,4 +1,4 @@
-<%= leaf_item_tag(leaf, data: { controller: "scroll-into-view", scroll_into_view_animation_value: "wiggle" }) do %>
+<%= leaf_item_tag(leaf) do %>
   <%= link_to leafable_path(leaf), class: "toc__thumbnail", data: { turbo_frame: "_top" } do %>
     <%= leaf.title if leaf.leafable.is_a?(Section) %>
     <%= leaf.leafable.body.to_html if leaf.leafable.is_a?(Page) %>

@@ -1,9 +1,5 @@
-<%= turbo_stream.update :leaves do %>
-  <% @leaves.each do |leaf| %>
-    <% if leaf == @new_leaf %>
-      <%= render "leaves/create", leaf: leaf %>
-    <% else %>
-      <%= render leaf %>
-    <% end %>
-  <% end %>
+<% if params[:position].present? %>
+  <%= turbo_stream.replace :dragged_item, partial: "leaves/edit", locals: { leaf: @leaf } %>
+<% else %>
+  <%= turbo_stream.append :leaves, partial: "leaves/edit", locals: { leaf: @leaf } %>
 <% end %>

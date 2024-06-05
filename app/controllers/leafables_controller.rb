@@ -6,10 +6,8 @@ class LeafablesController < ApplicationController
   end
 
   def create
-    @new_leaf = @book.leaves.create! leaf_params.merge(leafable: new_leafable)
-    position_new_leaf @new_leaf
-
-    @leaves = @book.leaves.with_leafables.positioned
+    @leaf = @book.leaves.create! leaf_params.merge(leafable: new_leafable)
+    position_new_leaf @leaf
   end
 
   def show
@@ -29,7 +27,6 @@ class LeafablesController < ApplicationController
 
   def destroy
     @leaf.trashed!
-    redirect_to @book
   end
 
   private
