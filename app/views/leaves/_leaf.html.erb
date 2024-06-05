@@ -1,4 +1,4 @@
-<li class="arrangement__item toc__leaf toc__leaf--<%= leaf.leafable_name %> <%= local_assigns[:css_class] %>" id="<%= dom_id(leaf) %>" data-arrangement-target="item" data-id="<%= leaf.id %>">
+<%= leaf_item_tag(leaf) do %>
   <%= image_tag "handle.svg", aria: { hidden: true }, size: 24, class: "arrangement__handle translucent colorize--black" %>
 
   <div class="toc__thumbnail">
@@ -40,4 +40,4 @@
   </small>
 
   <%= yield if block_given? %>
-</li>
+<% end %>

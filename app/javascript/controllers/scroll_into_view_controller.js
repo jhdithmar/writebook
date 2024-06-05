@@ -1,9 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
-import { nextFrame } from "helpers/timing_helpers"
 
 export default class extends Controller {
+  static values = { animation: String }
+
+  #scrolled = false
+
   async connect() {
-    await nextFrame()
-    this.element.scrollIntoView({ behavior: "smooth", block: "center" })
+    if (!this.#scrolled) {
+      this.element.scrollIntoView({ behavior: "smooth", block: "center" })
+      this.element.classList.add(this.animationValue)
+
+      this.#scrolled = true
+    }
+  }
+
+  animationEnd() {
+    this.element.classList.remove(this.animationValue)
   }
 }
