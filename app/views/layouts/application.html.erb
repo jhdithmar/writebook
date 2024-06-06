@@ -35,6 +35,10 @@
       <%= yield :header %>
     </header>
 
+    <div id="toolbar">
+      <%= yield :toolbar %>
+    </div>
+
     <main id="main" class="<%= @layout_class %>">
       <%= yield %>
     </main>

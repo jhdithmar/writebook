@@ -1,26 +1,49 @@
-  body:has(.page--section) {
+body:has(.page--section) {
   --btn-background: var(--color-subtle);
 
   background-color: var(--color-subtle);
 
-  :is(#header, #footer) {
-    background-color: var(--color-subtle);
-    border-color: var(--color-subtle-dark);
+  .separator {
+    border-color: var(--color-subtle);
   }
 }
 
-:is(.page--section) {
-  block-size: calc(100dvh - (var(--footer-height) * 2) - var(--block-space));
+#main:has(.page--section, .page--picture) {
   display: grid;
-  place-items: center;
 }
 
-.page__toolbar {
+.page-toolbar {
+  --padding-block: 0.5em;
+
   border-radius: 5em;
-  inset: 0 auto auto;
-  z-index: 1;
+  display: inline-flex;
+  margin: var(--block-space-half) auto;
+  padding: var(--padding-block) 1.1em;
+  transition: background-color 300ms ease;
+
+  house-md-toolbar {
+    --hover-size: 0;
+
+    padding: 0;
+
+    button, label {
+      &:is(:focus, :hover) {
+        background-color: var(--color-bg);
+      }
+    }
+  }
+
+  .separator {
+    border-color: var(--color-bg);
+    border-width: 3px;
+    margin-block: calc(-1 * var(--padding-block));
+  }
 }
 
 :is(.page__body, .page--page) {
   text-align: start;
+}
+
+:is(.page--section, .page--picture) {
+  place-self: center;
 }

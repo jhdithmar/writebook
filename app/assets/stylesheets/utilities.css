@@ -186,6 +186,13 @@
   }
 }
 
+/* Seperators */
+.separator {
+  border-inline-start: 1px solid var(--color-subtle-dark);
+  display: inline-flex;
+  inline-size: 0;
+}
+
 /* Accessibility */
 .for-screen-reader {
   block-size: 1px;

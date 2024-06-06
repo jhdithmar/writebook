@@ -1,16 +1,6 @@
 <% content_for(:title) { page_title(@section, @book) } %>
 
-<% content_for :header do %>
-  <%= render "leaves/header", book: @book, leaf: @leaf %>
-<% end %>
-
-<% if @book.editable? %>
-  <div class="page__toolbar flex-inline align-center gap center fill-shade">
-    <span class="center pad">
-      <%= editing_mode_toggle_switch(leaf: @leaf) %>
-    <span>
-  </div>
-<% end %>
+<%= render "leaves/header", book: @book, leaf: @leaf %>
 
 <div class="page--section">
   <h1><%= @section.title %></h1>

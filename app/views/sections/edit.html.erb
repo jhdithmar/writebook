@@ -19,16 +19,18 @@
   </nav>
 <% end %>
 
-<div class="page__toolbar flex align-center gap fill-selected margin-block-end-double position-sticky pad">
-  <button type="submit" form="section-editor" class="btn flex btn--positive flex-item-justify-end flex-item-no-shrink txt-small">
-    <%= image_tag "check.svg", aria: { hidden: true }, size: 24 %>
-    <span class="for-screen-reader">Save</span>
-  </button>
-
-  <span class="pad-inline" style="border-inline-start: 1px solid var(--color-subtle-dark)">
+<% content_for :toolbar do %>
+  <div class="page-toolbar fill-selected gap margin-block-end-double">
     <%= editing_mode_toggle_switch(leaf: @leaf) %>
-  </span>
-</div>
+
+    <span class="separator margin-inline-half" aria-hidden="true"></span>
+
+    <button type="submit" form="section-editor" class="btn flex btn--action flex-item-justify-end flex-item-no-shrink txt-small">
+      <%= image_tag "check.svg", aria: { hidden: true }, size: 24 %>
+      <span class="for-screen-reader">Save</span>
+    </button>
+  </div>
+<% end %>
 
 <div class="page--section">
   <%= render "sections/form", book: @book, section: @section %>
