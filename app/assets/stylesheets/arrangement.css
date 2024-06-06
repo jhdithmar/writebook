@@ -1,3 +1,7 @@
+.arrangement {
+  container-type: inline-size;
+}
+
 .arrangement__container {
   &:where(:has(#arrange-mode:checked)) {
     .disable-when-arranging {

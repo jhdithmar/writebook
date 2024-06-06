@@ -6,6 +6,7 @@
   --cover-height: auto;
   --space: clamp(2ch, 10%, 6ch);
 
+  container-type: unset;
   column-gap: calc(var(--space) / 2);
   display: grid;
   grid-template-columns: minmax(25%, 20dvw) 1fr;
