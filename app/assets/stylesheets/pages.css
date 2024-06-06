@@ -12,6 +12,11 @@ body:has(.page--section) {
   display: grid;
 }
 
+#main:has(.page--picture:not(.picture-form)) {
+  inline-size: 100%;
+  padding: 0;
+}
+
 .page-toolbar {
   --padding-block: 0.5em;
   --padding-inline: 1.1em;

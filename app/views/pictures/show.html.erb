@@ -2,7 +2,7 @@
 
 <%= render "leaves/header", book: @book, leaf: @leaf %>
 
-<figure class="page--picture flex flex-column align-center gap">
+<figure class="page--picture flex flex-column align-center gap margin-none">
   <% if @picture.image.attached? %>
     <%= link_to rails_blob_path(@picture.image), data: {
           action: "lightbox#open:prevent",
