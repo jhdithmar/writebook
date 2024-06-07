@@ -25,6 +25,16 @@ body {
   }
 }
 
+:where(#footer) {
+  max-inline-size: 100dvw;
+  view-transition-name: footer;
+
+  > nav {
+    padding-inline: var(--inline-space);
+    view-transition-name: footer-nav;
+  }
+}
+
 :where(#header) {
   max-inline-size: 100dvw;
   view-transition-name: header;
