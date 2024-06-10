@@ -39,7 +39,7 @@
       user-select: none;
     }
 
-    img {
+    img:not([class]) {
       filter: invert(0);
 
       @media (prefers-color-scheme: dark) {
@@ -153,7 +153,7 @@
 :is(.btn--link, .btn--negative, .btn--positive, .btn--reversed) {
   --btn-border-color: var(--color-bg);
 
-  img {
+  img:not([class]) {
     filter: invert(1);
 
     @media (prefers-color-scheme: dark) {
