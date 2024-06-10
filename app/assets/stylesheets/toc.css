@@ -192,7 +192,9 @@
   --hover-color: var(--color-negative);
   --hover-size: max(2px, 0.08em);
 
-  display: none;
+  .toc__container:where(:has(#delete-mode)) & {
+    display: none;
+  }
 
   .toc__container:where(:has(#delete-mode:checked)) & {
     display: flex;

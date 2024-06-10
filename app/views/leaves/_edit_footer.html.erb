@@ -2,6 +2,12 @@
 
 <% content_for :footer do %>
   <nav class="book__nav flex align-center gap justify-center">
-    <%= link_to_next_leafable(leaf, hotkey: false, for_edit: true) %>
+    <span class="flex-item-justify-start">
+      <%= render "leaves/delete", leaf: @leaf %>
+    </span>
+    <span class="flex-item-justify-start">
+      <%= link_to_next_leafable(leaf, hotkey: false, for_edit: true) %>
+    </span>
+    <span class="btn btn--placeholder flex-item-jusitfy-end"></span>
   </nav>
 <% end %>
