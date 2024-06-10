@@ -1,13 +1,3 @@
-body:has(.page--section) {
-  --btn-background: transparent;
-
-  background-color: var(--color-subtle);
-
-  .separator {
-    border-color: var(--color-subtle);
-  }
-}
-
 #main:has(.page--section, .page--picture) {
   display: grid;
 }
