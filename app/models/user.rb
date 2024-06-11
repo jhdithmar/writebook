@@ -16,6 +16,10 @@ class User < ApplicationRecord
     self == Current.user
   end
 
+  def accessable_or_published_books
+    books.or(Book.published).distinct
+  end
+
   def deactivate
     transaction do
       sessions.delete_all

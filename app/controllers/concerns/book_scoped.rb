@@ -5,6 +5,12 @@ module BookScoped extend ActiveSupport::Concern
 
   private
     def set_book
-      @book = Book.find(params[:book_id])
+      books = signed_in? ? Current.user.accessable_or_published_books : Book.published
+      @book = books.find(params[:book_id])
+    end
+
+    def ensure_editable
+      head :forbidden unless @book.editable?
     end
 end
+

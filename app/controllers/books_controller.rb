@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   before_action :ensure_editable, only: %i[ edit update destroy ]
 
   def index
-    @books = signed_in? ? Current.user.books.or(Book.published).distinct.ordered : Book.published.ordered
+    @books = signed_in? ? Current.user.accessable_or_published_books.ordered : Book.published.ordered
   end
 
   def new

@@ -1,6 +1,8 @@
 class Books::Leaves::MovesController < ApplicationController
   include BookScoped
 
+  before_action :ensure_editable
+
   def create
     leaf, *followed_by = leaves
     leaf.move_to_position(position, followed_by: followed_by)

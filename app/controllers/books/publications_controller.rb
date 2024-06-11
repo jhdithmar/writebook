@@ -18,10 +18,6 @@ class Books::PublicationsController < ApplicationController
   end
 
   private
-    def ensure_editable
-      head :forbidden unless @book.editable?
-    end
-
     def book_params
       params.require(:book).permit(:published, :slug)
     end
