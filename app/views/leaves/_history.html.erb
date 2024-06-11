@@ -1,3 +1,6 @@
 <% if edit = leaf.edits.sorted.first %>
-  <div class="txt-align-center txt-small margin-block-end margin-block-start-double">Last updated <%= link_to time_ago_in_words(edit.updated_at), page_edit_path(edit.leaf.leafable, edit) %> ago.</div>
+  <%= link_to page_edit_path(edit.leaf.leafable, edit, class: "btn btn--transparent" ) do %>
+    <%= image_tag "history.svg", aria: { hidden: "true" }, size: "24" %>
+    <span class="for-screen-reader">Last updated <%= time_ago_in_words(edit.updated_at) %> ago</span>
+  <% end %>
 <% end %>
