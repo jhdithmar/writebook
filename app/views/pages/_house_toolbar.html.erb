@@ -19,6 +19,11 @@
     <span class="for-screen-reader">Text style: code</span>
   <% end %>
 
+  <%= house_toolbar_button "link" do %>
+    <%= image_tag "text-link.svg", aria: { hidden: "true" }, size: "18", class: "colorize--black" %>
+    <span class="for-screen-reader">Text style: link</span>
+  <% end %>
+
   <%= house_toolbar_button "bulletList" do %>
     <%= image_tag "text-bullets.svg", aria: { hidden: "true" }, size: "18", class: "colorize--black" %>
     <span class="for-screen-reader">Text style: bulleted list</span>
