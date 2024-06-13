@@ -1,9 +1,9 @@
-<% content_for(:title) { "Changes to #{ @page.title }" } %>
+<% content_for(:title) { "Changes to #{ @leaf.title }" } %>
 <% @layout_class = "books" %>
 
 <% content_for :header do %>
   <nav>
-    <%= link_to edit_leafable_path(@page.leaf), class: "btn flex-item-justify-start" do %>
+    <%= link_to edit_leafable_path(@leaf), class: "btn flex-item-justify-start" do %>
       <%= image_tag "arrow-left.svg", aria: { hidden: true }, size: 24 %>
       <span class="for-screen-reader">Go back</span>
     <% end %>
@@ -12,8 +12,8 @@
       <%= link_to root_path do %>
         <%= image_tag "books.svg", aria: { label: "Books" }, size: 19, class: "colorize--black", alt: "Books" %>
       <% end %> ▸
-      <%= link_to @page.book.title, @page.book %> ▸
-      <strong><%= @page.title %></strong>
+      <%= link_to @leaf.book.title, @leaf.book %> ▸
+      <strong><%= @leaf.title %></strong>
     </div>
   </nav>
 <% end %>
@@ -23,7 +23,7 @@
     <%= turbo_frame_tag :previous_version do %>
       <header class="flex align-center justify-center gap">
         <% if @edit.previous %>
-          <%= link_to page_edit_path(@page, @edit.previous), class: "btn btn--reversed txt-small" do %>
+          <%= link_to page_edit_path(@leaf, @edit.previous), class: "btn btn--reversed txt-small" do %>
             <%= image_tag "arrow-left.svg", aria: { hidden: true }, size: 24 %>
             <span class="for-screen-reader">Previous version</span>
           <% end %>
@@ -39,7 +39,7 @@
         </h2>
 
         <% if @edit.next %>
-          <%= link_to page_edit_path(@page, @edit.next), class: "btn btn--reversed txt-small" do %>
+          <%= link_to page_edit_path(@leaf, @edit.next), class: "btn btn--reversed txt-small" do %>
             <%= image_tag "arrow-right.svg", aria: { hidden: true }, size: 24 %>
             <span class="for-screen-reader">Next version</span>
           <% end %>
@@ -57,11 +57,11 @@
 
   <section class="txt-align-start">
     <header class="flex align-center gap justify-center">
-      <%= link_to edit_leafable_path(@page.leaf), class: "btn btn--positive txt-medium center margin-none" do %>
+      <%= link_to edit_leafable_path(@leaf), class: "btn btn--positive txt-medium center margin-none" do %>
         Current
       <% end %>
     </header>
 
-    <%= @page.body.to_html %>
+    <%= @leaf.page.body.to_html %>
   </section>
 </div>

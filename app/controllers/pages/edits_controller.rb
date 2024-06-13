@@ -1,10 +1,17 @@
 class Pages::EditsController < ApplicationController
-  include PageScoped
+  include PageLeafScoped
 
   before_action :set_edit
 
+  def show
+  end
+
   private
     def set_edit
-      @edit = @page.leaf.edits.find(params[:id])
+      if params[:id] == "latest"
+        @edit = @leaf.edits.last
+      else
+        @edit = @leaf.edits.find(params[:id])
+      end
     end
 end
