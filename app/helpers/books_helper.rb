@@ -1,9 +1,9 @@
 module BooksHelper
-  def link_to_book_for_accessable_state(accessable, book, **, &)
+  def link_to_book_for_accessable_state(accessable, book, anchor: nil, **, &)
     if accessable
-      link_to book_path(book), **, &
+      link_to book_path(book, anchor: anchor), **, &
     else
-      link_to public_book_path(book.slug), **, &
+      link_to public_book_path(book.slug, anchor: anchor), **, &
     end
   end
 
