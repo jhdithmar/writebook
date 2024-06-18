@@ -8,6 +8,7 @@ const Direction = {
 
 const NEW_ITEM_ID = "dragged_item"
 const NEW_ITEM_DATA_TYPE = "x-writebook/create"
+const MOVE_ITEM_DATA_TYPE = "x-writebook/move"
 const ITEM_SELECTOR = "[data-arrangement-target=item]"
 
 export default class extends Controller {
@@ -148,6 +149,9 @@ export default class extends Controller {
     this.#wasDropped = false
     this.#dragItem = event.target
     this.#saveOriginalOrder()
+
+    event.dataTransfer.dropEffect = "move"
+    event.dataTransfer.setData(MOVE_ITEM_DATA_TYPE, event.target)
 
     if (!this.#targetIsSelected(event.target)) {
       this.#setSelection(event.target, false)
