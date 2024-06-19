@@ -23,7 +23,7 @@ class Books::PublicationsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     patch book_publication_url(@book), params: { book: { slug: "new-slug" } }
-    assert_redirected_to book_publication_url(@book)
+    assert_redirected_to book_publication_url(@book.reload)
 
     assert_equal "new-slug", @book.reload.slug
   end

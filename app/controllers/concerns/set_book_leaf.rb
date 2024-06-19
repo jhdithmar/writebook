@@ -8,7 +8,7 @@ module SetBookLeaf
 
   private
     def set_book
-      @book = Book.find(params[:book_id])
+      @book = Book.accessable_or_published.find(params[:book_id])
     end
 
     def set_leaf

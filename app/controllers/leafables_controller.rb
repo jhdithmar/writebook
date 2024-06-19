@@ -1,4 +1,6 @@
 class LeafablesController < ApplicationController
+  allow_unauthenticated_access only: :show
+
   include SetBookLeaf
 
   before_action :ensure_editable, except: :show

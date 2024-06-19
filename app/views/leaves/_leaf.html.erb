@@ -12,7 +12,7 @@
         <span class="for-screen-reader">Edit <%= leaf.title %></span>
       <% end %>
 
-      <%= link_to leafable_path(leaf), class: "toc__link hide_from_edit_mode", data: { turbo_frame: "_top" } do %>
+      <%= link_to book_leafable_path(leaf.book, leaf), class: "toc__link hide_from_edit_mode", data: { turbo_frame: "_top" } do %>
         <span class="for-screen-reader">Open <%= leaf.title %></span>
       <% end %>
 

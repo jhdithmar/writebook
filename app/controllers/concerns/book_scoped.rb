@@ -5,8 +5,7 @@ module BookScoped extend ActiveSupport::Concern
 
   private
     def set_book
-      books = signed_in? ? Current.user.accessable_or_published_books : Book.published
-      @book = books.find(params[:book_id])
+      @book = Book.accessable_or_published.find(params[:book_id])
     end
 
     def ensure_editable

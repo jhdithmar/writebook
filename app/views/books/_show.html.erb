@@ -5,7 +5,7 @@
   <%= tag.meta property: "og:title", content: book.title %>
   <%= tag.meta property: "og:description", content: book.subtitle %>
   <%= tag.meta property: "og:image", content: "#{root_url}#{url_for(book.cover)}" unless book.cover.blank? %>
-  <%= tag.meta property: "og:url", content: book.published? ? public_book_url(slug: book.slug) : book_url(book) %>
+  <%= tag.meta property: "og:url", content: book_url(book) %>
 
   <%= tag.meta property: "twitter:title", content: book.title %>
   <%= tag.meta property: "twitter:description", content: book.subtitle %>

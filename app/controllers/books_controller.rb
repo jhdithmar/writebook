@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  allow_unauthenticated_access only: :index
+  allow_unauthenticated_access only: %i[ index show ]
 
   before_action :ensure_index_is_not_empty, only: :index
   before_action :set_book, only: %i[ show edit update destroy ]
@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   before_action :ensure_editable, only: %i[ edit update destroy ]
 
   def index
-    @books = signed_in? ? Current.user.accessable_or_published_books.ordered : Book.published.ordered
+    @books = Book.accessable_or_published.ordered
   end
 
   def new
@@ -44,7 +44,7 @@ class BooksController < ApplicationController
 
   private
     def set_book
-      @book = Current.user.books.find params[:id]
+      @book = Book.accessable_or_published.find params[:id]
     end
 
     def set_users

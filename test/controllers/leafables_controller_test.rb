@@ -5,6 +5,31 @@ class LeafablesControllerTest < ActionDispatch::IntegrationTest
     sign_in :kevin
   end
 
+  test "show" do
+    get book_leafable_path(books(:handbook), leaves(:welcome_page))
+
+    assert_response :success
+    assert_select "p", "This is such a great handbook."
+  end
+
+  test "show with public access to a published book" do
+    sign_out
+    books(:handbook).update!(published: true)
+
+    get book_leafable_path(books(:handbook), leaves(:welcome_page))
+
+    assert_response :success
+    assert_select "p", "This is such a great handbook."
+  end
+
+  test "show does not allow public access to an unpublished book" do
+    sign_out
+
+    get book_leafable_path(books(:handbook), leaves(:welcome_page))
+
+    assert_response :not_found
+  end
+
   test "create" do
     assert_changes -> { books(:handbook).leaves.count }, +1 do
       post book_pages_path(books(:handbook), format: :turbo_stream), params: {
