@@ -5,6 +5,27 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     sign_in :kevin
   end
 
+  test "show" do
+    get leafable_path(sample_page_leaf("## Hello"))
+
+    assert_response :ok
+    assert_select "h2", text: /Hello/
+  end
+
+  test "show with HTML content in the markdown" do
+    get leafable_path(sample_page_leaf(%(<div id="test"><div style="text-align:center;">Hello</div></div>)))
+    assert_select "#test", html: %(<div style="text-align:center;">Hello</div>)
+  end
+
+  test "show with tables in the markdown" do
+    get leafable_path(sample_page_leaf(%(| name | food |\n| ---- | ---- |\n| Kevin | Pizza |)))
+    assert_select "table th", text: "name"
+    assert_select "table th", text: "food"
+
+    assert_select "table td", text: "Kevin"
+    assert_select "table td", text: "Pizza"
+  end
+
   test "create" do
     post book_pages_path(books(:handbook), format: :turbo_stream), params: { leaf: { title: "Another page" }, page: { body: "With interesting words." } }
     assert_response :success
@@ -44,4 +65,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Better welcome", updated_page.title
     assert_equal "With even more interesting words.", updated_page.body.content
   end
+
+  private
+    def sample_page_leaf(markdown)
+      books(:handbook).press Page.new(body: markdown), title: "Sample"
+    end
 end
