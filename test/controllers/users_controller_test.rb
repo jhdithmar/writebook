@@ -33,6 +33,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal user.id, Session.find_by(token: parsed_cookies.signed[:session_token]).user.id
   end
 
+  test "edit is accessable to the current user" do
+    sign_in :david
+
+    get edit_user_url(users(:david))
+    assert_response :success
+
+    get edit_user_url(users(:kevin))
+    assert_response :forbidden
+  end
+
   test "update" do
     sign_in :david
     assert users(:david).administrator?

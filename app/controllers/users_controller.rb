@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :verify_join_code, only: %i[ new create ]
   before_action :ensure_can_administer, only: %i[ update destroy ]
   before_action :set_user, only: %i[ show update edit destroy ]
+  before_action :ensure_current_user, only: :edit
 
 
   def index
@@ -53,5 +54,9 @@ class UsersController < ApplicationController
 
     def verify_join_code
       head :not_found if Current.account.join_code != params[:join_code]
+    end
+
+    def ensure_current_user
+      head :forbidden unless @user == Current.user
     end
 end
