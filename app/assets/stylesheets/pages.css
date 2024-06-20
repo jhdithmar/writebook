@@ -161,8 +161,10 @@ body:not(.edit-mode) .hide_from_reading_mode {
 }
 
 .being-edited-by {
-  background-color: oklch(var(--lch-red) / 0.1);
-  border-radius: 0.5em;
+  animation: fade-out 300ms ease-out 20s;
+  background-color: var(--color-ink);
+  border-radius: 2em;
+  color: var(--color-ink-reversed);
   padding: 0.5em 1em;
 }
 

@@ -128,6 +128,7 @@
 .margin-inline-start { margin-inline-start: var(--inline-space); }
 .margin-inline-start-half { margin-inline-start: var(--inline-space-half); }
 .margin-inline-end { margin-inline-end: var(--inline-space); }
+.margin-inline-end-half { margin-inline-end: var(--inline-space-half); }
 .margin-inline-half { margin-inline: var(--inline-space-half); }
 .margin-inline-double { margin-inline: var(--inline-space-double); }
 
