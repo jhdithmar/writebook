@@ -31,8 +31,6 @@ Rails.application.routes.draw do
     resources :sections
     resources :pictures
     resources :pages
-
-    get "/:id", to: "leafables#show", as: :leafable
   end
 
   get "/:id/:slug", to: "books#show", as: :book_slug
