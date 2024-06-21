@@ -8,8 +8,4 @@ class Leaf < ApplicationRecord
   enum :status, %w[ active trashed ].index_by(&:itself), default: :active
 
   scope :with_leafables, -> { includes(:leafable) }
-
-  def to_param
-    "#{title}-#{id}".parameterize
-  end
 end
