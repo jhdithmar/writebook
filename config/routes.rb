@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :books, path: "/", constraints: { book_id: /(\S+)-(\d+)/, id: /(\S+)-(\d+)/ }, except: :index do
+  resources :books except: %i[ index show ] do
     resource :publication, controller: "books/publications", only: %i[ show edit update ]
     resource :bookmark, controller: "books/bookmarks", only: :show
 
@@ -34,6 +34,9 @@ Rails.application.routes.draw do
 
     get "/:id", to: "leafables#show", as: :leafable
   end
+
+  get "/:id/:slug", to: "books#show", as: :book_slug
+  get "/:book_id/:book_slug/:id/:slug", to: "leafables#show", as: :leafable_slug
 
   resources :pages, only: [] do
     scope module: "pages" do
