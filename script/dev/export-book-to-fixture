@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require File.expand_path("../../config/environment", File.dirname(__FILE__))
+
+abort "Usage: #{$0} <book id>" unless ARGV.length == 1
+
+def fixture_path(model)
+  Rails.root.join("app", "fixtures", model.class.name.underscore, model.id.to_s + ".yml").tap do |path|
+    path.dirname.mkpath
+  end
+end
+
+def export_model(model, attributes)
+  fixture_path(model).write(model.attributes.slice(*attributes).to_yaml)
+end
+
+book = Book.find(ARGV.first)
+export_model(book, %w[ id title subtitle author published slug everyone_access ])
+
+book.leaves.each do |leaf|
+  export_model(leaf, %w[ id book_id title position leafable_id leafable_type ])
+
+  case
+  when leaf.page?
+    export_model(leaf.page, %w[ id body ])
+    export_model(leaf.page.body, %w[ id record_type record_id name content ])
+  when leaf.picture?
+    export_model(leaf.picture, %w[ id ])
+  when leaf.section?
+    export_model(leaf.section, %w[ id theme ])
+  end
+end

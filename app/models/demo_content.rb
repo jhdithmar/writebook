@@ -1,38 +1,26 @@
 class DemoContent
   class << self
-    def create_manual(user)
-      book = Book.create(title: "The Writebook Manual", everyone_access: true)
-      book.cover.attach(load_attachement("writebook-manual-cover.png"))
-      book.update_access(readers: [], editors: [ user.id ])
+    def import(user)
+      import_fixtures("book") do |book|
+        # book.update_access(readers: [], editors: [ user.id ])
+      end
 
-      book.press demo_section, title: "Chapter 1"
-      book.press demo_page, title: "My first page"
-      book.press demo_picture, title: "Figure 1"
+      %w[ page picture section leaf action_text/markdown ].each do |kind|
+        import_fixtures(kind)
+      end
     end
 
     private
-      def demo_section
-        Section.new
-      end
+      def import_fixtures(kind)
+        klass = kind.classify.constantize
+        filenames = Dir.glob(Rails.root.join("app/fixtures/#{kind}/*.yml"))
+        filenames.each do |file|
+          args = YAML.load_file(file)
 
-      def demo_page
-        Page.new(body: load_markdown("introduction.md"))
-      end
-
-      def demo_picture
-        Picture.new(caption: "Inspiration is perishable", image: load_attachement("inspiration-is-perishable.png"))
-      end
-
-      def load_attachement(filename, content_type: "image/png")
-        {
-          io: File.open(Rails.root.join("app/assets/images/demo/#{filename}")),
-          filename: filename,
-          content_type: content_type
-        }
-      end
-
-      def load_markdown(filename)
-        File.read(Rails.root.join("app/assets/markdown/demo/#{filename}"))
+          puts "Creating #{kind} #{args}"
+          instance = klass.create!(args)
+          yield instance if block_given?
+        end
       end
   end
 end
