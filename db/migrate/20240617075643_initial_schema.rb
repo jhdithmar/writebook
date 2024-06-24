@@ -59,16 +59,15 @@ class InitialSchema < ActiveRecord::Migration[8.0]
     end
 
     create_table "books", force: :cascade do |t|
-      t.string "title"
+      t.string "title", null: false
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
       t.string "subtitle"
       t.string "author"
       t.boolean "published", default: false, null: false
-      t.string "slug"
+      t.string "slug", null: false
       t.boolean "everyone_access", default: true, null: false
       t.index [ "published" ], name: "index_books_on_published"
-      t.index [ "slug" ], name: "index_books_on_slug", unique: true
     end
 
     create_table "edits", force: :cascade do |t|
