@@ -1,7 +1,7 @@
 class SectionsController < LeafablesController
   private
     def new_leafable
-      Section.new
+      Section.new leafable_params
     end
 
     def leafable_params
