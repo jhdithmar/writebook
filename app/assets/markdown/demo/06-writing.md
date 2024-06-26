@@ -3,11 +3,12 @@ title: Writing with Writebook
 ---
 # Writing
 
-We've designed Writebook to be an calm, enjoyable and distraction-free place to write. It's a tool that gets out of your way so you can focus on creating.
+We've designed Writebook to be an calm, enjoyable and distraction-free place to write.
 
 Here's what you need to know.
 
 ## Editing mode
+
 The first step when working on your book is to flip the switch and enter _Editing mode_. That will reveal the page toolbar and save button. Edit mode stays on even as you move around to other pages in your book while working. You can turn it off when you're done working or toggle it anytime to preview your changes as readers will see them.
 
  ![edit-mode.gif](/u/edit-mode-ygeCcM.gif)

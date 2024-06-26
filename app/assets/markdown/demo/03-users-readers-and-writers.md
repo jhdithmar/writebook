@@ -3,7 +3,7 @@ title: Users, Readers & Writers
 ---
 # Users, Readers & Writers
 
-Writebook is even better when you invite your team. Users invited to Writebook can read books that are private to just your team, create their own books, or you can choose which books they can contribute to.
+You can use Writebook alone, or invite others to publish with you. Users invited to Writebook can read books that are private to just your team, create their own books, or you can choose which books they can contribute to.
 
   ![users.png](/u/users-GdhgKg.png)
 

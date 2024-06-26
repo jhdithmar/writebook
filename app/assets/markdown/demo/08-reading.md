@@ -3,9 +3,9 @@ title: Reading
 ---
 # Reading
 
-An enjoyable reading experience is at the heart of Writebook. Beautiful typography that adapts to your device and screen size, a calm layout, and minimal distractions make reading a pleasure.
+Clear typography that adapts to your device and screen size, a calm layout, and minimal distractions make reading a Writebook a pleasure. 
 
-Here are a few more things you should now.
+Here are a few more things you should know.
 
 ## Full Screen
 
@@ -17,4 +17,4 @@ For a more immersive, focused reading experience hit the expand button at the to
 
 As you reach the bottom of a page, you'll find a button with the title of the next page. Just hit it to continue. The back arrow button at the top of the screen moves back to the previous page.
 
-On devies with a hardware keyboard attached you can also simply hit the arrow keys to move between pages. Just press  `→` to turn to the next page and `←` to go back. When you reach the end of the book, Writebook will return you to the table of contents.
+On devices with a hardware keyboard attached you can also simply hit the arrow keys to move between pages. Just press  `→` to turn to the next page and `←` to go back. When you reach the end of the book, Writebook will return you to the table of contents.
