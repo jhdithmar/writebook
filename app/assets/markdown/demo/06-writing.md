@@ -14,7 +14,7 @@ The first step when working on your book is to flip the switch and enter _Editin
 
 ## Autosave
 
-Writebook automatically saves as you write so you don't have to think about saving or worry about losing your work. The _Save_ button in the page toolbar continually comminicates where the are unsaved changes, when it's in the process of saving, and when all changes have been saved. You can hit the button if you want to, but it'll save for you even if you you don't.
+Writebook automatically saves as you write so you don't have to think about saving or worry about losing your work. The _Save_ button in the page toolbar continually comminicates where the are unsaved changes, when it's in the process of saving, and when all changes have been saved. You can hit the button if you want to, but it'll save for you even if you don't.
 
  ![autosave.gif](/u/autosave-Ssql4X.gif)
 
