@@ -25,7 +25,7 @@ module Book::Accessable
   end
 
   def editable?(user: Current.user)
-    access_for(user: user)&.editor?
+    access_for(user: user)&.editor? || user.administrator?
   end
 
   def access_for(user: Current.user)
