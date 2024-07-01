@@ -15,7 +15,7 @@ Ok, let’s get into it.
 
 Here’s how to get it running on your end:
 
-1. **FIRST, pick a machine to host Writebook.** If you need one in the cloud, we recommend checking out [DigitalOcean](/2/the-writebook-manual/180/installing-on-digital-ocean) or <a href="https://www.hetzner.com" target="_blank">Hetzner</a>.
+1. **FIRST, pick a machine to host Writebook.** If you need one in the cloud, we recommend checking out <a href="https://www.digitalocean.com" target="_blank">Digital Ocean</a> ([instructions](/2/the-writebook-manual/180/installing-on-digital-ocean)) or <a href="https://www.hetzner.com" target="_blank">Hetzner</a> ([instructions](/2/the-writebook-manual/181/installing-on-hetzner)).
 2. **THEN, point DNS to the IP address of the machine that’ll be hosting Writebook**. You need to point a domain (example.com) or subdomain (books.example.com) to the IP address of the machine hosting Writebook. Make sure it’s a straight DNS pointer, no proxying! (Don’t worry about SSL, Writebook will automatically set that up for you).
 3. **NEXT, connect a terminal to the machine**. To run the install command, you must connect to the machine you’re using with either `SSH` or a web-based cloud console.
 4. **LAST, install Writebook with one simple command**. Paste the command you received via email into the terminal on your server and wait while everything is installed (this may take up to 5 minutes).
