@@ -24,7 +24,7 @@ module BooksHelper
 
   def link_to_first_leafable(leaves)
     if first_leaf = leaves.first
-      link_to leafable_slug_path(first_leaf), data: hotkey_data_attributes("right"), class: "disable-when-arranging", hidden: true do
+      link_to leafable_slug_path(first_leaf), data: { touch_target: "button" }.merge(hotkey_data_attributes("right")), class: "disable-when-arranging", hidden: true do
         tag.span(class: "btn") do
           image_tag("arrow-right.svg", aria: { hidden: true }, size: 24) + tag.span("Start reading", class: "for-screen-reader")
         end + tag.span(first_leaf.title, class: "overflow-ellipsis")
@@ -49,11 +49,11 @@ module BooksHelper
     if next_leaf = leaf.next
       path = for_edit ? edit_leafable_path(next_leaf) : leafable_slug_path(next_leaf)
       link_to path, data: hotkey_data_attributes("right", enabled: hotkey), class: "btn txt-medium min-width" do
-        tag.span("Next: #{next_leaf.title }", class: "overflow-ellipsis") + image_tag("arrow-right.svg", aria: { hidden: true }, size: 24)
+        tag.span("Next: #{next_leaf.title }", class: "overflow-ellipsis") + image_tag("arrow-right.svg", aria: { hidden: true }, size: 24, data: { touch_target: "button" })
       end
     else
       link_to book_slug_path(leaf.book), data: hotkey_data_attributes("right", enabled: hotkey), class: "btn txt-medium" do
-        tag.span("Table of contents: #{leaf.book.title }", class: "overflow-ellipsis") + image_tag("arrow-reverse.svg", aria: { hidden: true }, size: 24)
+        tag.span("Table of contents: #{leaf.book.title }", class: "overflow-ellipsis") + image_tag("arrow-reverse.svg", aria: { hidden: true }, size: 24, data: { touch_target: "button" })
       end
     end
   end
