@@ -11,6 +11,8 @@ class QrCodeLink
 
   def self.from_signed(signed)
     new verifier.verify(signed, purpose: :qr_code)
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    nil
   end
 
   private
