@@ -22,11 +22,11 @@ module Page::Searchable
 
   private
     def create_in_search_index
-      execute_sql_with_binds "insert into page_search_index(rowid, body) values (?, ?)", id, body_text
+      execute_sql_with_binds "insert into page_search_index(rowid, body) values (?, ?)", id, plain_text
     end
 
     def update_in_search_index
-      updated = execute_sql_with_binds "update page_search_index set body = ? where rowid = ?", body_text, id
+      updated = execute_sql_with_binds "update page_search_index set body = ? where rowid = ?", plain_text, id
       create_in_search_index unless updated
     end
 
