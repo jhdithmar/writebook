@@ -2,16 +2,18 @@ class Books::SearchesController < ApplicationController
   include BookScoped
 
   def create
-    @leaves = if query.present?
-      book_leaves.highlight_matches(query).limit(50)
+    @leaves = if search.present?
+      book_leaves.highlight_matches(search).limit(50)
     else
       Leaf.none
     end
   end
 
   private
-    def query
-      params[:search]&.gsub(/[^[:word:]]/, " ")
+    def search
+      params[:search]&.gsub(/[^[:word:]"]/, " ").tap do |search|
+        return nil if search.count('"').odd?
+      end
     end
 
     def book_leaves
