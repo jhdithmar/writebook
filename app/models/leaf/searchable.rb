@@ -2,9 +2,9 @@ module Leaf::Searchable
   extend ActiveSupport::Concern
 
   included do
-    after_create_commit  :create_in_search_index, if: -> { searchable_content.present? }
-    after_update_commit  :update_in_search_index, if: -> { searchable_content.present? }
-    after_destroy_commit :remove_from_search_index, if: -> { searchable_content.present? }
+    after_create_commit  :create_in_search_index,   if: :searchable?
+    after_update_commit  :update_in_search_index,   if: :searchable?
+    after_destroy_commit :remove_from_search_index, if: :searchable?
 
     scope :search, ->(query) {
       joins("join leaf_search_index on leaves.id = leaf_search_index.rowid")
@@ -26,17 +26,24 @@ module Leaf::Searchable
   end
 
   def reindex
-    update_in_search_index if searchable_content.present?
+    update_in_search_index if searchable?
   end
 
   private
+    def searchable?
+      searchable_content.present?
+    end
+
     def create_in_search_index
-      execute_sql_with_binds "insert into leaf_search_index(rowid, title, content) values (?, ?, ?)", id, title, searchable_content
+      execute_sql_with_binds "insert into leaf_search_index(rowid, title, content) values (?, ?, ?)",
+        id, title, searchable_content
     end
 
     def update_in_search_index
       transaction do
-        updated = execute_sql_with_binds "update leaf_search_index set title = ?, content = ? where rowid = ?", title, searchable_content, id
+        updated = execute_sql_with_binds "update leaf_search_index set title = ?, content = ? where rowid = ?",
+          title, searchable_content, id
+
         create_in_search_index unless updated
       end
     end
@@ -47,6 +54,7 @@ module Leaf::Searchable
 
     def execute_sql_with_binds(*statement)
       self.class.connection.execute self.class.sanitize_sql(statement)
-      self.class.connection.raw_connection.changes > 0
+
+      self.class.connection.raw_connection.changes.nonzero?
     end
 end
