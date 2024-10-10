@@ -10,6 +10,13 @@ class Leaf::SearchableTest < ActiveSupport::TestCase
     assert_includes leaves, leaves(:welcome_page)
   end
 
+  test "updating a leaf updates the search index" do
+    pages(:welcome).update! body: "sausages"
+
+    leaves = Leaf.search("sausages")
+    assert_includes leaves, leaves(:welcome_page)
+  end
+
   test "highlighting matches" do
     leaves = Leaf.search("great handbook")
     assert_includes leaves.first.title_match, "The <mark>Handbook</mark>"
