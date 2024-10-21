@@ -1,12 +1,21 @@
 body {
   display: grid;
   grid-template-rows: auto auto 1fr auto var(--block-space);
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "sidebar header"
-    "sidebar toolbar"
-    "sidebar main"
-    "sidebar footer";
+    "header"
+    "toolbar"
+    "main"
+    "footer";
+
+  @media (min-width: 70ch) {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "sidebar header"
+      "sidebar toolbar"
+      "sidebar main"
+      "sidebar footer";
+  }
 }
 
 :where(#main) {
@@ -56,10 +65,12 @@ body {
 :where(#header) {
   grid-area: header;
   max-inline-size: 100vw;
-  transition: margin-inline-start 0.2s ease;
+  transition: margin-inline-start 0.2s ease-out;
 
   :has(#sidebar-toggle:checked) & {
-    margin-inline-start: -25vw;
+    @media (min-width: 70ch) {
+      margin-inline-start: -25vw;
+    }
   }
 
   > nav {
@@ -80,17 +91,25 @@ body {
 }
 
 :where(#sidebar) {
-  font-size: var(--font-medium-responsive);
+  background-color: var(--color-subtle-light);
+  font-size: var(--font-small-responsive);
   grid-area: sidebar;
   inline-size: 25vw;
-  block-size: 100vh;
-  margin-inline-start: -25vw;
+  block-size: 100%;
   overflow: auto;
   padding-block-start: var(--btn-size);
-  transition: inset 0.2s ease, margin-inline-start 0.2s ease;
+  transition: margin-inline-start 0.2s ease-out;
 
   :has(#sidebar-toggle:checked) & {
     margin-inline-start: 0;
+  }
+
+  @media (max-width: 70ch) {
+    display: none;
+  }
+
+  @media (min-width: 70ch) {
+    margin-inline-start: -25vw;
   }
 }
 

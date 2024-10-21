@@ -1,0 +1,13 @@
+.sidebar__toggle {
+  transition: margin-inline-end 0.2s ease-out;
+
+  :has(#sidebar-toggle:checked) & {
+    @media (min-width: 70ch) {
+      margin-inline-end: calc(25vw - var(--btn-size));
+    }
+  }
+
+  @media (max-width: 70ch) {
+    display: none;
+  }
+}
