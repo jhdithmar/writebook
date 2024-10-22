@@ -4,10 +4,10 @@ class JumpsController < ApplicationController
   before_action :ensure_editable_book, only: :create
 
   def show
-    if page = @book.pages.find_by(slug: params[:page_slug])
-      redirect_to page
+    if leaf = @book.leaves.active.find_by(slug: params[:page_slug])
+      redirect_to leaf
     elsif @book.editable?
-      render # create new page via autosubmitting form
+      post_redirect_to posts_url
     else
       # FIXME: Convert to render a 404
       raise ActiveRecord::NotFound
@@ -31,5 +31,10 @@ class JumpsController < ApplicationController
 
     def new_page_title_from(slug)
       slug.replace("-", " ").capitalize
+    end
+
+
+    def post_redirect_to(url)
+      render html: %(<html><body><form id="redirect_form" action="#{url}"></form><script>document.getElementById("redirect").requestSubmit()</script></body></html>)
     end
 end
