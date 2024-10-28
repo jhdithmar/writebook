@@ -1,3 +1,14 @@
+.search__banner {
+  background-color: var(--color-highlight);
+  border-radius: 1.5em;
+  margin: var(--block-space-half) auto 0;
+  padding: 0.3em 0.5em 0.3em 0.9em;
+
+  .btn {
+    font-size: 0.5em;
+  }
+}
+
 .search__modal {
   --panel-size: 80ch;
 }

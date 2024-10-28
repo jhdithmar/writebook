@@ -73,7 +73,7 @@
 
   border-radius: 5em;
   display: inline-flex;
-  margin: var(--block-space-half) auto;
+  margin: var(--block-space-half) auto 0;
   min-width: 0;
   padding: var(--padding-block) var(--padding-inline);
   transition: background-color 300ms ease;
