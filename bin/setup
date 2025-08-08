@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-# Install Ruby needed
-mise install
-
 announce() {
   printf "\n--- $@\n"
 }
+
+announce "Installing Ruby"
+mise install
 
 announce "Installing dependencies"
 gem install bundler --conservative
