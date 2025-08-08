@@ -4,9 +4,6 @@ set -eo pipefail
 # Install Ruby needed
 mise install
 
-# Use application binstubs
-export PATH="./bin:$PATH"
-
 announce() {
   printf "\n--- $@\n"
 }
