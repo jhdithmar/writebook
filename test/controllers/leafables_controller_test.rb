@@ -38,6 +38,43 @@ class LeafablesControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "show with markdown format returns raw markdown content" do
+    leaves(:welcome_page).leafable.update!(body: "## Hello\n\nThis is **bold** text.")
+
+    get leafable_slug_path(leaves(:welcome_page), format: :md)
+
+    assert_response :success
+    assert_equal "## Hello\n\nThis is **bold** text.", response.body.strip
+  end
+
+  test "show with markdown format for section returns body" do
+    leaves(:welcome_section).leafable.update!(body: "Section Body Content")
+
+    get leafable_slug_path(leaves(:welcome_section), format: :md)
+
+    assert_response :success
+    assert_equal "Section Body Content", response.body.strip
+  end
+
+  test "show with markdown format for picture returns caption" do
+    leaves(:reading_picture).leafable.update!(caption: "A beautiful picture")
+
+    get leafable_slug_path(leaves(:reading_picture), format: :md)
+
+    assert_response :success
+    assert_equal "A beautiful picture", response.body.strip
+  end
+
+  test "show with markdown format does not escape HTML entities" do
+    leaves(:welcome_page).leafable.update!(body: "This has <a href='http://example.com'>a link</a>")
+
+    get leafable_slug_path(leaves(:welcome_page), format: :md)
+
+    assert_response :success
+    assert_includes response.body, "<a href='http://example.com'>"
+    assert_not_includes response.body, "&lt;"
+  end
+
   test "create" do
     assert_changes -> { books(:handbook).leaves.count }, +1 do
       post book_pages_path(books(:handbook), format: :turbo_stream), params: {
