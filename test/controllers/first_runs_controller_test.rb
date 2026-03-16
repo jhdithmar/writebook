@@ -20,7 +20,7 @@ class FirstRunsControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference -> { User.count }, 1 do
-      post first_run_url, params: { user: { name: "New Person", email_address: "new@37signals.com", password: "secret123456" } }
+      post first_run_url, params: { user: { name: "New Person", email_address: "new@example.com", password: "secret123456" } }
     end
 
     assert_redirected_to root_url
@@ -32,7 +32,7 @@ class FirstRunsControllerTest < ActionDispatch::IntegrationTest
     create_user
 
     assert_no_difference -> { User.count } do
-      post first_run_url, params: { user: { name: "New Person", email_address: "new@37signals.com", password: "secret123456" } }
+      post first_run_url, params: { user: { name: "New Person", email_address: "new@example.com", password: "secret123456" } }
     end
 
     assert_redirected_to root_url
